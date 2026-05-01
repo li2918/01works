@@ -1,0 +1,2255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>顾问合作模型 · 让顶级自由顾问跟随你 | Partnership Model</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+        --navy: #0a1f44;
+        --navy-light: #1a3a6e;
+        --navy-dark: #050d20;
+        --gold: #c9a961;
+        --gold-light: #e5d29a;
+        --gold-dark: #b08e4a;
+        --cream: #faf7f0;
+        --gray-50: #f8f9fa;
+        --gray-100: #e9ecef;
+        --gray-200: #dee2e6;
+        --gray-400: #6c757d;
+        --gray-700: #343a40;
+        --gray-900: #1a1a1a;
+        --accent: #d63384;
+        --success: #2d7a4f;
+        --warning: #e07b00;
+        --info: #2c5282;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                     "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        line-height: 1.7;
+        color: var(--gray-900);
+        background: #fff;
+        font-size: 16px;
+    }
+
+    /* ========== Navigation ========== */
+    nav {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        background: rgba(10, 31, 68, 0.95);
+        backdrop-filter: blur(12px);
+        z-index: 1000;
+        padding: 18px 0;
+        border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+    }
+
+    .nav-container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav-logo {
+        color: var(--gold);
+        font-weight: 700;
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 28px;
+        list-style: none;
+        align-items: center;
+    }
+
+    .nav-links a {
+        color: rgba(255, 255, 255, 0.85);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-back {
+        padding: 8px 18px;
+        border: 1px solid rgba(201, 169, 97, 0.5);
+        border-radius: 30px;
+        font-size: 13px !important;
+    }
+
+    .nav-back:hover {
+        background: var(--gold);
+        color: var(--navy) !important;
+    }
+
+    /* ========== Hero ========== */
+    .hero {
+        min-height: 92vh;
+        background: linear-gradient(135deg, #0a1f44 0%, #1a3a6e 50%, #2c5282 100%);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        padding: 120px 32px 80px;
+    }
+
+    .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+            radial-gradient(circle at 70% 40%, rgba(201, 169, 97, 0.18) 0%, transparent 45%),
+            radial-gradient(circle at 20% 80%, rgba(201, 169, 97, 0.12) 0%, transparent 45%);
+        pointer-events: none;
+    }
+
+    .hero-content {
+        max-width: 1280px;
+        margin: 0 auto;
+        width: 100%;
+        position: relative;
+    }
+
+    .hero-tag {
+        display: inline-block;
+        padding: 8px 18px;
+        background: rgba(201, 169, 97, 0.15);
+        border: 1px solid rgba(201, 169, 97, 0.4);
+        border-radius: 30px;
+        color: var(--gold);
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        margin-bottom: 32px;
+    }
+
+    .hero h1 {
+        font-size: clamp(36px, 6vw, 68px);
+        font-weight: 700;
+        line-height: 1.15;
+        margin-bottom: 24px;
+        letter-spacing: -1px;
+    }
+
+    .hero h1 .gold { color: var(--gold); }
+
+    .hero-sub {
+        font-size: clamp(16px, 2vw, 20px);
+        color: rgba(255, 255, 255, 0.78);
+        max-width: 800px;
+        line-height: 1.6;
+        margin-bottom: 48px;
+    }
+
+    .hero-thesis {
+        background: rgba(255, 255, 255, 0.05);
+        border-left: 4px solid var(--gold);
+        padding: 28px 32px;
+        border-radius: 4px;
+        max-width: 900px;
+        margin-bottom: 56px;
+        font-size: 18px;
+        line-height: 1.7;
+        backdrop-filter: blur(10px);
+    }
+
+    .hero-thesis .formula {
+        color: var(--gold);
+        font-weight: 600;
+        font-size: 17px;
+        margin-bottom: 8px;
+        letter-spacing: 0.5px;
+    }
+
+    .hero-thesis .quote {
+        color: rgba(255, 255, 255, 0.92);
+    }
+
+    .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+    }
+
+    .kpi-card {
+        padding: 28px 24px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(201, 169, 97, 0.25);
+        border-radius: 8px;
+        backdrop-filter: blur(10px);
+    }
+
+    .kpi-card .kpi-label {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.6);
+        letter-spacing: 1.5px;
+        margin-bottom: 12px;
+    }
+
+    .kpi-card .kpi-value {
+        font-size: 36px;
+        font-weight: 700;
+        color: var(--gold);
+        line-height: 1;
+        margin-bottom: 8px;
+    }
+
+    .kpi-card .kpi-unit {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* ========== Sections ========== */
+    section { padding: 100px 32px; }
+
+    .container { max-width: 1280px; margin: 0 auto; }
+
+    .section-tag {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--gold);
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+    }
+
+    .section-title {
+        font-size: clamp(28px, 4vw, 44px);
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 20px;
+        letter-spacing: -0.5px;
+        line-height: 1.2;
+    }
+
+    .section-sub {
+        font-size: 18px;
+        color: var(--gray-400);
+        margin-bottom: 64px;
+        max-width: 820px;
+        line-height: 1.6;
+    }
+
+    /* ========== Two-Tier Model ========== */
+    .tier-section { background: var(--cream); }
+
+    .tier-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        margin-top: 40px;
+    }
+
+    .tier-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 48px 40px;
+        position: relative;
+        transition: all 0.4s;
+        overflow: hidden;
+    }
+
+    .tier-card::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 6px;
+    }
+
+    .tier-card.blue::before { background: linear-gradient(90deg, var(--info) 0%, var(--navy-light) 100%); }
+    .tier-card.gold::before { background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%); }
+
+    .tier-card.gold {
+        background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+        color: #fff;
+        transform: scale(1.02);
+        box-shadow: 0 24px 60px rgba(10, 31, 68, 0.25);
+    }
+
+    .tier-card.gold::after {
+        content: "推荐";
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        background: var(--gold);
+        color: var(--navy);
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    .tier-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 24px 60px rgba(10, 31, 68, 0.18);
+    }
+
+    .tier-card.gold:hover {
+        transform: translateY(-6px) scale(1.02);
+    }
+
+    .tier-share {
+        font-size: 14px;
+        color: var(--gray-400);
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin-bottom: 8px;
+    }
+
+    .tier-card.gold .tier-share { color: var(--gold); }
+
+    .tier-name {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 8px;
+    }
+
+    .tier-card.gold .tier-name { color: #fff; }
+
+    .tier-en {
+        font-size: 14px;
+        color: var(--gray-400);
+        font-style: italic;
+        margin-bottom: 20px;
+    }
+
+    .tier-card.gold .tier-en { color: rgba(255, 255, 255, 0.6); }
+
+    .tier-pct {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        margin-bottom: 28px;
+        padding-bottom: 24px;
+        border-bottom: 1px dashed var(--gray-200);
+    }
+
+    .tier-card.gold .tier-pct { border-bottom-color: rgba(255, 255, 255, 0.2); }
+
+    .tier-pct .pct-num {
+        font-size: 64px;
+        font-weight: 800;
+        color: var(--info);
+        line-height: 1;
+    }
+
+    .tier-card.gold .tier-pct .pct-num { color: var(--gold); }
+
+    .tier-pct .pct-label {
+        font-size: 14px;
+        color: var(--gray-700);
+    }
+
+    .tier-card.gold .tier-pct .pct-label { color: rgba(255, 255, 255, 0.75); }
+
+    .tier-positioning {
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--navy);
+        margin-bottom: 24px;
+        line-height: 1.5;
+    }
+
+    .tier-card.gold .tier-positioning { color: #fff; }
+
+    .tier-benefits {
+        list-style: none;
+        margin-bottom: 28px;
+    }
+
+    .tier-benefits li {
+        padding: 12px 0 12px 32px;
+        position: relative;
+        font-size: 15px;
+        color: var(--gray-700);
+        line-height: 1.5;
+    }
+
+    .tier-card.gold .tier-benefits li { color: rgba(255, 255, 255, 0.92); }
+
+    .tier-benefits li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        top: 12px;
+        width: 22px;
+        height: 22px;
+        line-height: 22px;
+        text-align: center;
+        background: var(--success);
+        color: #fff;
+        border-radius: 50%;
+        font-weight: 700;
+        font-size: 12px;
+    }
+
+    .tier-card.gold .tier-benefits li::before {
+        background: var(--gold);
+        color: var(--navy);
+    }
+
+    .tier-target {
+        padding: 16px 20px;
+        background: var(--cream);
+        border-radius: 6px;
+        font-size: 13px;
+        color: var(--gray-700);
+        line-height: 1.6;
+    }
+
+    .tier-card.gold .tier-target {
+        background: rgba(201, 169, 97, 0.12);
+        color: rgba(255, 255, 255, 0.85);
+    }
+
+    .tier-target strong { color: var(--navy); }
+    .tier-card.gold .tier-target strong { color: var(--gold); }
+
+    .tier-callout {
+        margin-top: 48px;
+        padding: 28px 36px;
+        background: #fff;
+        border-left: 4px solid var(--accent);
+        border-radius: 4px;
+        font-size: 15px;
+        color: var(--gray-700);
+        line-height: 1.7;
+    }
+
+    .tier-callout strong { color: var(--accent); }
+
+    /* ========== Five Engines ========== */
+    .engines-section { background: #fff; }
+
+    .engines-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 16px;
+        margin-top: 40px;
+    }
+
+    .engine-card {
+        background: var(--cream);
+        padding: 32px 24px;
+        border-radius: 12px;
+        text-align: center;
+        transition: all 0.3s;
+        border-top: 4px solid var(--gold);
+        cursor: default;
+    }
+
+    .engine-card:hover {
+        transform: translateY(-8px);
+        background: var(--navy);
+        color: #fff;
+        box-shadow: 0 20px 48px rgba(10, 31, 68, 0.18);
+    }
+
+    .engine-icon {
+        font-size: 40px;
+        margin-bottom: 16px;
+    }
+
+    .engine-name {
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 12px;
+        transition: color 0.3s;
+    }
+
+    .engine-card:hover .engine-name { color: var(--gold); }
+
+    .engine-pain {
+        font-size: 12px;
+        color: var(--accent);
+        font-weight: 600;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .engine-card:hover .engine-pain { color: var(--gold-light); }
+
+    .engine-pain-text {
+        font-size: 13px;
+        color: var(--gray-700);
+        font-style: italic;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 1px dashed var(--gray-200);
+        line-height: 1.5;
+    }
+
+    .engine-card:hover .engine-pain-text {
+        color: rgba(255, 255, 255, 0.7);
+        border-bottom-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .engine-solution {
+        font-size: 13px;
+        color: var(--gray-900);
+        line-height: 1.5;
+    }
+
+    .engine-card:hover .engine-solution {
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* ========== Calculator ========== */
+    .calculator-section {
+        background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .calculator-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+            radial-gradient(circle at 90% 20%, rgba(201, 169, 97, 0.1) 0%, transparent 40%);
+        pointer-events: none;
+    }
+
+    .calculator-section .section-title { color: #fff; }
+    .calculator-section .section-sub { color: rgba(255, 255, 255, 0.75); }
+
+    .calculator-card {
+        background: rgba(255, 255, 255, 0.04);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(201, 169, 97, 0.3);
+        border-radius: 16px;
+        padding: 48px;
+        margin-top: 40px;
+        position: relative;
+    }
+
+    .calc-controls {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        margin-bottom: 40px;
+        padding-bottom: 32px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .calc-control {
+        background: rgba(255, 255, 255, 0.04);
+        padding: 24px 28px;
+        border-radius: 8px;
+    }
+
+    .calc-control label {
+        display: block;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.7);
+        letter-spacing: 1px;
+        margin-bottom: 16px;
+        font-weight: 600;
+    }
+
+    .calc-control .value-display {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 12px;
+    }
+
+    .calc-control .current {
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--gold);
+        line-height: 1;
+    }
+
+    .calc-control .unit {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Custom slider */
+    input[type="range"] {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 3px;
+        outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 22px;
+        height: 22px;
+        background: var(--gold);
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 0 0 4px rgba(201, 169, 97, 0.2);
+        transition: all 0.2s;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+        transform: scale(1.15);
+        box-shadow: 0 0 0 6px rgba(201, 169, 97, 0.3);
+    }
+
+    input[type="range"]::-moz-range-thumb {
+        width: 22px;
+        height: 22px;
+        background: var(--gold);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .tier-toggle {
+        display: flex;
+        gap: 12px;
+        margin-top: 16px;
+    }
+
+    .tier-btn {
+        flex: 1;
+        padding: 12px 16px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: rgba(255, 255, 255, 0.75);
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.2s;
+    }
+
+    .tier-btn.active {
+        background: var(--gold);
+        color: var(--navy);
+        border-color: var(--gold);
+    }
+
+    .calc-results {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+    }
+
+    .result-card {
+        padding: 32px;
+        border-radius: 12px;
+        position: relative;
+    }
+
+    .result-card.solo {
+        background: rgba(214, 51, 132, 0.08);
+        border: 1px solid rgba(214, 51, 132, 0.3);
+    }
+
+    .result-card.platform {
+        background: rgba(45, 122, 79, 0.1);
+        border: 1px solid rgba(45, 122, 79, 0.4);
+    }
+
+    .result-label {
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+    }
+
+    .result-card.solo .result-label { color: #f08bb8; }
+    .result-card.platform .result-label { color: #6dc18f; }
+
+    .result-title {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 24px;
+        color: #fff;
+    }
+
+    .result-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 14px;
+    }
+
+    .result-row.subtle {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 13px;
+    }
+
+    .result-row.deduction { color: #f08bb8; }
+
+    .result-row.final {
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 2px solid rgba(255, 255, 255, 0.2);
+        border-bottom: none;
+        font-size: 18px;
+        font-weight: 700;
+        color: #fff;
+    }
+
+    .result-row.final .amount { color: var(--gold); font-size: 24px; }
+
+    .delta-banner {
+        margin-top: 32px;
+        padding: 32px;
+        background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+        border-radius: 12px;
+        text-align: center;
+        color: var(--navy);
+    }
+
+    .delta-banner .delta-label {
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin-bottom: 8px;
+    }
+
+    .delta-banner .delta-value {
+        font-size: 56px;
+        font-weight: 800;
+        line-height: 1;
+        margin-bottom: 12px;
+    }
+
+    .delta-banner .delta-sub {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    /* ========== Growth Path ========== */
+    .growth-section { background: var(--cream); }
+
+    .growth-timeline {
+        margin-top: 50px;
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+    }
+
+    .growth-line {
+        position: absolute;
+        top: 32px;
+        left: 8%;
+        right: 8%;
+        height: 4px;
+        background: linear-gradient(90deg, var(--gold) 0%, var(--navy) 100%);
+        z-index: 0;
+    }
+
+    .growth-stage {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+    }
+
+    .growth-dot {
+        width: 64px;
+        height: 64px;
+        margin: 0 auto 24px;
+        border-radius: 50%;
+        background: var(--gold);
+        color: var(--navy);
+        font-weight: 800;
+        font-size: 22px;
+        line-height: 64px;
+        border: 6px solid #fff;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .growth-stage:nth-child(3) .growth-dot { background: var(--navy-light); color: #fff; }
+    .growth-stage:nth-child(4) .growth-dot { background: var(--navy); color: var(--gold); }
+
+    .growth-card {
+        background: #fff;
+        padding: 32px 28px;
+        border-radius: 12px;
+        text-align: left;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .growth-stage-name {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 6px;
+    }
+
+    .growth-time {
+        font-size: 12px;
+        color: var(--gold);
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        margin-bottom: 16px;
+    }
+
+    .growth-detail {
+        background: var(--cream);
+        padding: 14px 16px;
+        border-radius: 6px;
+        margin-bottom: 14px;
+    }
+
+    .growth-detail-label {
+        font-size: 11px;
+        color: var(--gray-400);
+        letter-spacing: 1px;
+        margin-bottom: 4px;
+    }
+
+    .growth-detail-value {
+        font-size: 14px;
+        color: var(--navy);
+        font-weight: 600;
+    }
+
+    .growth-purpose {
+        font-size: 13px;
+        color: var(--gray-700);
+        line-height: 1.6;
+        padding-top: 14px;
+        border-top: 1px dashed var(--gray-200);
+    }
+
+    /* ========== Trust Section ========== */
+    .trust-section { background: #fff; }
+
+    .trust-quote {
+        max-width: 760px;
+        margin: 40px 0 48px;
+        padding: 28px 36px;
+        background: var(--cream);
+        border-left: 4px solid var(--accent);
+        border-radius: 4px;
+        font-size: 17px;
+        color: var(--gray-700);
+        font-style: italic;
+        line-height: 1.7;
+    }
+
+    .trust-quote strong { color: var(--accent); font-style: normal; }
+
+    .trust-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 16px;
+    }
+
+    .trust-card {
+        background: #fff;
+        border: 1px solid var(--gray-200);
+        padding: 28px 22px;
+        border-radius: 8px;
+        text-align: center;
+        transition: all 0.3s;
+    }
+
+    .trust-card:hover {
+        border-color: var(--gold);
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(201, 169, 97, 0.15);
+    }
+
+    .trust-icon {
+        width: 52px;
+        height: 52px;
+        margin: 0 auto 16px;
+        background: var(--cream);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+    }
+
+    .trust-card:hover .trust-icon {
+        background: var(--gold);
+    }
+
+    .trust-name {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 10px;
+    }
+
+    .trust-desc {
+        font-size: 12px;
+        color: var(--gray-700);
+        line-height: 1.6;
+    }
+
+    /* ========== Top Tier ========== */
+    .toptier-section { background: var(--cream); }
+
+    .toptier-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        margin-top: 40px;
+    }
+
+    .toptier-card {
+        background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+        color: #fff;
+        padding: 36px 28px;
+        border-radius: 12px;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s;
+    }
+
+    .toptier-card:hover {
+        transform: translateY(-6px);
+    }
+
+    .toptier-card::before {
+        content: "";
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 160px;
+        height: 160px;
+        background: rgba(201, 169, 97, 0.12);
+        border-radius: 50%;
+    }
+
+    .toptier-star {
+        font-size: 28px;
+        margin-bottom: 16px;
+        position: relative;
+    }
+
+    .toptier-name {
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--gold);
+        margin-bottom: 12px;
+    }
+
+    .toptier-desc {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.85);
+        line-height: 1.6;
+    }
+
+    /* ========== CTA ========== */
+    .cta-section {
+        background: linear-gradient(135deg, #050d20 0%, #0a1f44 100%);
+        color: #fff;
+        text-align: center;
+        padding: 100px 32px;
+    }
+
+    .cta-section h2 {
+        font-size: clamp(28px, 4vw, 44px);
+        margin-bottom: 24px;
+        line-height: 1.3;
+        font-weight: 700;
+    }
+
+    .cta-section h2 .gold-text { color: var(--gold); }
+
+    .cta-section .summary {
+        max-width: 800px;
+        margin: 0 auto 40px;
+        font-size: 18px;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.85);
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .cta-button {
+        display: inline-block;
+        padding: 14px 32px;
+        background: var(--gold);
+        color: var(--navy);
+        text-decoration: none;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: 1px;
+        transition: all 0.3s;
+    }
+
+    .cta-button:hover {
+        background: var(--gold-light);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(201, 169, 97, 0.3);
+    }
+
+    .cta-button.outline {
+        background: transparent;
+        border: 2px solid var(--gold);
+        color: var(--gold);
+    }
+
+    .cta-button.outline:hover {
+        background: var(--gold);
+        color: var(--navy);
+    }
+
+    footer {
+        background: var(--navy-dark);
+        color: rgba(255, 255, 255, 0.5);
+        padding: 32px;
+        text-align: center;
+        font-size: 13px;
+        border-top: 1px solid rgba(201, 169, 97, 0.2);
+    }
+
+    /* ========== Partnership Ladder ========== */
+    .ladder-section {
+        background: linear-gradient(180deg, #fff 0%, var(--cream) 100%);
+    }
+
+    .ladder-list {
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .ladder-step {
+        display: grid;
+        grid-template-columns: 100px 1fr;
+        gap: 24px;
+        align-items: stretch;
+        padding-bottom: 24px;
+    }
+
+    .ladder-rank {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 24px;
+    }
+
+    .rank-num {
+        width: 84px;
+        height: 84px;
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+        font-weight: 800;
+        margin-bottom: 12px;
+        flex-shrink: 0;
+    }
+
+    .ladder-step.l1 .rank-num { background: #e9ecef; color: #495057; }
+    .ladder-step.l2 .rank-num { background: var(--info); color: #fff; }
+    .ladder-step.l3 .rank-num {
+        background: var(--navy);
+        color: var(--gold);
+        border: 2px solid var(--gold);
+    }
+    .ladder-step.l4 .rank-num {
+        background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+        color: var(--navy);
+    }
+    .ladder-step.l5 .rank-num {
+        background: linear-gradient(135deg, var(--navy) 0%, var(--gold) 100%);
+        color: #fff;
+        box-shadow: 0 8px 28px rgba(201, 169, 97, 0.45);
+    }
+
+    .rank-bar {
+        width: 4px;
+        flex: 1;
+        background: linear-gradient(180deg, var(--gold) 0%, transparent 100%);
+        min-height: 24px;
+    }
+
+    .ladder-step:last-child .rank-bar { display: none; }
+
+    .ladder-content {
+        background: #fff;
+        border-radius: 12px;
+        padding: 32px 36px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        border-top: 4px solid;
+        transition: all 0.3s;
+    }
+
+    .ladder-content:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 40px rgba(10, 31, 68, 0.12);
+    }
+
+    .ladder-step.l1 .ladder-content { border-top-color: #ced4da; }
+    .ladder-step.l2 .ladder-content { border-top-color: var(--info); }
+    .ladder-step.l3 .ladder-content { border-top-color: var(--gold); }
+    .ladder-step.l4 .ladder-content {
+        background: linear-gradient(135deg, #fff 0%, var(--cream) 100%);
+        border-top-color: var(--gold-dark);
+    }
+    .ladder-step.l5 .ladder-content {
+        background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+        color: #fff;
+        border-top-color: var(--gold);
+        box-shadow: 0 16px 48px rgba(10, 31, 68, 0.25);
+    }
+
+    .ladder-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 24px;
+        padding-bottom: 20px;
+        border-bottom: 1px dashed var(--gray-200);
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    .ladder-step.l5 .ladder-head { border-bottom-color: rgba(255, 255, 255, 0.15); }
+
+    .ladder-name {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 4px;
+    }
+
+    .ladder-step.l5 .ladder-name { color: #fff; }
+
+    .ladder-en {
+        font-size: 13px;
+        color: var(--gray-400);
+        font-style: italic;
+        letter-spacing: 1px;
+    }
+
+    .ladder-step.l5 .ladder-en { color: rgba(255, 255, 255, 0.6); }
+
+    .ladder-tenure {
+        background: var(--cream);
+        padding: 8px 18px;
+        border-radius: 20px;
+        font-size: 12px;
+        color: var(--navy);
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        white-space: nowrap;
+    }
+
+    .ladder-step.l5 .ladder-tenure {
+        background: rgba(201, 169, 97, 0.2);
+        color: var(--gold);
+    }
+
+    .ladder-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+    }
+
+    .ladder-col .col-title {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--gold);
+        margin-bottom: 14px;
+        letter-spacing: 1.5px;
+    }
+
+    .ladder-col ul {
+        list-style: none;
+    }
+
+    .ladder-col ul li {
+        padding: 7px 0 7px 18px;
+        position: relative;
+        font-size: 13px;
+        color: var(--gray-700);
+        line-height: 1.5;
+    }
+
+    .ladder-step.l5 .ladder-col ul li { color: rgba(255, 255, 255, 0.85); }
+
+    .ladder-col ul li::before {
+        content: "›";
+        position: absolute;
+        left: 0;
+        top: 6px;
+        color: var(--gold);
+        font-weight: 700;
+        font-size: 16px;
+    }
+
+    .income-line {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 14px;
+        line-height: 1.4;
+    }
+
+    .ladder-step.l5 .income-line { color: var(--gold); }
+
+    .income-est {
+        font-size: 12px;
+        color: var(--gray-400);
+        line-height: 1.5;
+    }
+
+    .income-est strong {
+        display: block;
+        font-size: 22px;
+        color: var(--success);
+        margin-top: 6px;
+        font-weight: 700;
+    }
+
+    .ladder-step.l5 .income-est { color: rgba(255, 255, 255, 0.65); }
+    .ladder-step.l5 .income-est strong { color: #6dc18f; }
+
+    .ladder-step.l4 .income-est strong { color: var(--gold-dark); }
+
+    /* Income Trajectory Chart */
+    .trajectory-chart {
+        margin-top: 64px;
+        background: #fff;
+        border-radius: 12px;
+        padding: 48px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .trajectory-chart h3 {
+        font-size: 22px;
+        color: var(--navy);
+        margin-bottom: 12px;
+        text-align: center;
+    }
+
+    .trajectory-sub {
+        text-align: center;
+        color: var(--gray-400);
+        margin-bottom: 36px;
+        font-size: 14px;
+    }
+
+    .trajectory-bars {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .trajectory-row {
+        display: grid;
+        grid-template-columns: 140px 1fr 100px;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .trajectory-label {
+        font-weight: 700;
+        color: var(--navy);
+        font-size: 14px;
+    }
+
+    .trajectory-bar-container {
+        height: 32px;
+        background: var(--cream);
+        border-radius: 16px;
+        overflow: hidden;
+    }
+
+    .trajectory-bar {
+        height: 100%;
+        background: linear-gradient(90deg, var(--info) 0%, var(--gold) 100%);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        padding: 0 16px;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .trajectory-bar.peak {
+        background: linear-gradient(90deg, var(--gold) 0%, var(--gold-dark) 100%);
+    }
+
+    .trajectory-amount {
+        text-align: right;
+        font-weight: 700;
+        color: var(--navy);
+        font-size: 15px;
+    }
+
+    .ladder-callout {
+        margin-top: 48px;
+        padding: 32px 40px;
+        background: var(--navy);
+        color: #fff;
+        border-left: 4px solid var(--gold);
+        border-radius: 4px;
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    .ladder-callout strong { color: var(--gold); }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+        .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+        .tier-grid,
+        .calc-controls,
+        .calc-results { grid-template-columns: 1fr; }
+        .engines-grid,
+        .trust-grid { grid-template-columns: repeat(2, 1fr); }
+        .toptier-grid { grid-template-columns: repeat(2, 1fr); }
+        .growth-timeline { grid-template-columns: 1fr; }
+        .growth-line { display: none; }
+        .tier-card.gold { transform: none; }
+        .tier-card.gold:hover { transform: translateY(-6px); }
+        .nav-links li:not(:last-child) { display: none; }
+        section { padding: 70px 24px; }
+        .calculator-card { padding: 32px 24px; }
+        .ladder-step { grid-template-columns: 70px 1fr; gap: 16px; }
+        .rank-num { width: 60px; height: 60px; font-size: 20px; border-radius: 14px; }
+        .ladder-content { padding: 24px 22px; }
+        .ladder-grid { grid-template-columns: 1fr; gap: 20px; }
+        .trajectory-row { grid-template-columns: 100px 1fr; gap: 12px; }
+        .trajectory-amount { display: none; }
+        .trajectory-chart { padding: 28px 22px; }
+    }
+
+    @media (max-width: 640px) {
+        .kpi-grid,
+        .engines-grid,
+        .trust-grid,
+        .toptier-grid { grid-template-columns: 1fr; }
+        .tier-card { padding: 32px 24px; }
+        .tier-pct .pct-num { font-size: 48px; }
+        .delta-banner .delta-value { font-size: 40px; }
+    }
+
+    .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.7s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-container">
+        <div class="nav-logo">EDU·PARTNERS</div>
+        <ul class="nav-links">
+            <li><a href="#tiers">双轨机制</a></li>
+            <li><a href="#engines">五大引擎</a></li>
+            <li><a href="#calculator">收入模拟器</a></li>
+            <li><a href="#growth">成长路径</a></li>
+            <li><a href="#ladder" style="color: var(--gold);">合伙人通道</a></li>
+            <li><a href="#trust">信任建设</a></li>
+            <li><a href="admissions-consulting-model.html" class="nav-back">← 组织模型</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-content">
+        <span class="hero-tag">CONSULTANT PARTNERSHIP MODEL</span>
+        <h1>
+            让顶级自由顾问<br>
+            <span class="gold">主动跟随你</span>
+        </h1>
+        <p class="hero-sub">
+            自由顾问的本质决策只有一个：在你这里赚到的净收入 ÷ 投入精力 vs 自己单干。
+            让顾问选择跟随你的，从来不是"高分成"，而是
+            <strong style="color: var(--gold);">"赚得更多 + 操心更少 + 品牌更亮"</strong>。
+        </p>
+
+        <div class="hero-thesis">
+            <div class="formula">CORE THESIS</div>
+            <div class="quote">
+                "60% 不是剥削 40%，而是
+                <strong style="color: var(--gold);">我们和你一起把蛋糕做到 3 倍大，我们拿一份它</strong>。"
+            </div>
+        </div>
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-label">INCOME UPLIFT · 净收入提升</div>
+                <div class="kpi-value">+64%</div>
+                <div class="kpi-unit">vs 单干模式</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">CASE VOLUME · 接单量提升</div>
+                <div class="kpi-value">+50%</div>
+                <div class="kpi-unit">从 8 单/年 → 12+ 单/年</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">TIME SAVED · 时间释放</div>
+                <div class="kpi-value">40%</div>
+                <div class="kpi-unit">从杂事中解放</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">PAYMENT · 结算速度</div>
+                <div class="kpi-value">48h</div>
+                <div class="kpi-unit">签约即打款</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section 1: Two-Tier Model -->
+<section id="tiers" class="tier-section">
+    <div class="container">
+        <div class="section-tag">PART 01 · 双轨合作机制</div>
+        <h2 class="section-title">两条路 · 顾问自选</h2>
+        <p class="section-sub">
+            很多平台败在把"60% = 我们用你的 IP"做成了剥削。
+            关键设计：让 60% 档变成"<strong>我们投资你的品牌</strong>"，而不是"我们要你的脸"。
+            默认入场是 50% 档，60% 档需要"申请进入"——稀缺感反而让人想要。
+        </p>
+
+        <div class="tier-grid">
+            <!-- 50% Tier -->
+            <div class="tier-card blue">
+                <div class="tier-share">TIER 1 · 50% SHARE</div>
+                <div class="tier-name">协作顾问</div>
+                <div class="tier-en">Independent Partner</div>
+
+                <div class="tier-pct">
+                    <span class="pct-num">50%</span>
+                    <span class="pct-label">分成给顾问</span>
+                </div>
+
+                <div class="tier-positioning">
+                    "你保持完全独立性，我们做你的运营外包。"
+                </div>
+
+                <ul class="tier-benefits">
+                    <li>完全保留个人独立性，可同时多平台合作</li>
+                    <li>使用平台基础流量与运营服务</li>
+                    <li>使用平台合同、收款、客服系统</li>
+                    <li>使用平台数据库与文书工具</li>
+                    <li>顾问个人 IP 完全归属自己</li>
+                </ul>
+
+                <div class="tier-target">
+                    <strong>适合人群：</strong>
+                    已有稳定客源、独立性强、不愿被绑定的资深独立顾问。
+                </div>
+            </div>
+
+            <!-- 60% Tier - Featured -->
+            <div class="tier-card gold">
+                <div class="tier-share">TIER 2 · 60% SHARE</div>
+                <div class="tier-name">认证顾问</div>
+                <div class="tier-en">Featured Partner</div>
+
+                <div class="tier-pct">
+                    <span class="pct-num">60%</span>
+                    <span class="pct-label">分成给顾问</span>
+                </div>
+
+                <div class="tier-positioning">
+                    "你授权 IP 给我们，我们投资你的品牌成长。"
+                </div>
+
+                <ul class="tier-benefits">
+                    <li>包含 50% 档全部权益</li>
+                    <li><strong>个人 IP 投资</strong>：专访稿、宣传片、个人主页</li>
+                    <li><strong>流量倾斜</strong>：优质 lead 优先推送</li>
+                    <li><strong>联合品牌曝光</strong>：媒体、讲座、行业活动</li>
+                    <li><strong>年度奖金 + 利润池分红</strong></li>
+                    <li><strong>首页推荐位 + 案例署名权</strong></li>
+                </ul>
+
+                <div class="tier-target">
+                    <strong>适合人群：</strong>
+                    愿意与平台长期共建、希望放大个人品牌影响力的顾问。
+                </div>
+            </div>
+        </div>
+
+        <div class="tier-callout">
+            <strong>关键心理学设计：</strong>
+            将 60% 档定位为"升级"而非"妥协"。
+            用稀缺感（需要申请通过）+ 实际权益（IP 投资、流量倾斜、奖金）+ 身份感（首页署名、品牌曝光）
+            让顾问<strong>想主动进入 60% 档</strong>，而不是被动接受。
+        </div>
+    </div>
+</section>
+
+<!-- Section 2: Five Engines -->
+<section id="engines" class="engines-section">
+    <div class="container">
+        <div class="section-tag">PART 02 · 五大引擎</div>
+        <h2 class="section-title">让顾问"离不开你"</h2>
+        <p class="section-sub">
+            每一个引擎都对应顾问单干时的一个"痛点"。
+            当顾问深刻意识到：脱离平台，这五样东西自己干都很难/很贵——
+            才是真正的留人护城河。
+        </p>
+
+        <div class="engines-grid">
+            <div class="engine-card">
+                <div class="engine-icon">🎯</div>
+                <div class="engine-name">流量引擎</div>
+                <div class="engine-pain">PAIN POINT</div>
+                <div class="engine-pain-text">"拉客占了 30% 时间"</div>
+                <div class="engine-solution">
+                    平台投放 + 转介绍 + 智能匹配，
+                    年单量从 8 → 12+
+                </div>
+            </div>
+
+            <div class="engine-card">
+                <div class="engine-icon">⚙️</div>
+                <div class="engine-name">运营托管</div>
+                <div class="engine-pain">PAIN POINT</div>
+                <div class="engine-pain-text">"合同收款客诉烦死"</div>
+                <div class="engine-solution">
+                    全套托管，顾问只做咨询，
+                    其他一切平台搞定
+                </div>
+            </div>
+
+            <div class="engine-card">
+                <div class="engine-icon">🛠️</div>
+                <div class="engine-name">工具数据</div>
+                <div class="engine-pain">PAIN POINT</div>
+                <div class="engine-pain-text">"数据库工具自己买太贵"</div>
+                <div class="engine-solution">
+                    大学数据库 + 5000 案例库 +
+                    AI 文书工具
+                </div>
+            </div>
+
+            <div class="engine-card">
+                <div class="engine-icon">👥</div>
+                <div class="engine-name">协作团队</div>
+                <div class="engine-pain">PAIN POINT</div>
+                <div class="engine-pain-text">"文书面试一个人扛不动"</div>
+                <div class="engine-solution">
+                    按需加购辅助团队，
+                    文书 / 标化 / 面试全覆盖
+                </div>
+            </div>
+
+            <div class="engine-card">
+                <div class="engine-icon">🤝</div>
+                <div class="engine-name">社群成长</div>
+                <div class="engine-pain">PAIN POINT</div>
+                <div class="engine-pain-text">"单干孤独无成长"</div>
+                <div class="engine-solution">
+                    同行复盘 + 培训学院 +
+                    顶级 mentor 体系
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section 3: Income Calculator -->
+<section id="calculator" class="calculator-section">
+    <div class="container">
+        <div class="section-tag">PART 03 · 收入模拟器</div>
+        <h2 class="section-title">算账 · 最有说服力的武器</h2>
+        <p class="section-sub">
+            拖动滑块，让顾问亲自算出"单干 vs 跟随我们"的真实收入差。
+            数字会说话——比任何话术都有说服力。
+        </p>
+
+        <div class="calculator-card">
+            <!-- Controls -->
+            <div class="calc-controls">
+                <div class="calc-control">
+                    <label>📦 平均客单价</label>
+                    <div class="value-display">
+                        <span class="current"><span id="priceDisplay">25</span> 万</span>
+                        <span class="unit">人民币 / 单</span>
+                    </div>
+                    <input type="range" id="priceSlider" min="10" max="80" value="25" step="1">
+                    <div style="display: flex; justify-content: space-between; font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 8px;">
+                        <span>10 万</span><span>80 万</span>
+                    </div>
+                </div>
+
+                <div class="calc-control">
+                    <label>📅 年度签单数（单干模式）</label>
+                    <div class="value-display">
+                        <span class="current"><span id="casesDisplay">8</span> 单</span>
+                        <span class="unit">/ 年</span>
+                    </div>
+                    <input type="range" id="casesSlider" min="3" max="15" value="8" step="1">
+                    <div style="display: flex; justify-content: space-between; font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 8px;">
+                        <span>3 单</span><span>15 单</span>
+                    </div>
+                </div>
+
+                <div class="calc-control" style="grid-column: 1 / -1;">
+                    <label>🤝 选择合作档位</label>
+                    <div class="tier-toggle">
+                        <button class="tier-btn" data-tier="50">50% 档 · 协作顾问</button>
+                        <button class="tier-btn active" data-tier="60">60% 档 · 认证顾问</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results -->
+            <div class="calc-results">
+                <!-- Solo -->
+                <div class="result-card solo">
+                    <div class="result-label">SOLO MODE</div>
+                    <div class="result-title">😰 单干模式</div>
+
+                    <div class="result-row">
+                        <span>接单数量</span>
+                        <span class="amount" id="soloVolume">8 单</span>
+                    </div>
+                    <div class="result-row">
+                        <span>总流水</span>
+                        <span class="amount" id="soloRevenue">200 万</span>
+                    </div>
+                    <div class="result-row">
+                        <span>个人毛收入（100%）</span>
+                        <span class="amount" id="soloGross">200 万</span>
+                    </div>
+                    <div class="result-row deduction subtle">
+                        <span>− 流量获客 (15%)</span>
+                        <span id="soloMarketing">-30 万</span>
+                    </div>
+                    <div class="result-row deduction subtle">
+                        <span>− 工具与文书外包 (12%)</span>
+                        <span id="soloTools">-25 万</span>
+                    </div>
+                    <div class="result-row deduction subtle">
+                        <span>− 杂事时间成本</span>
+                        <span id="soloOps">-25 万</span>
+                    </div>
+                    <div class="result-row deduction subtle">
+                        <span>− 客诉 / 退款风险</span>
+                        <span id="soloRisk">-10 万</span>
+                    </div>
+                    <div class="result-row final">
+                        <span>实际净收入</span>
+                        <span class="amount" id="soloNet">110 万</span>
+                    </div>
+                </div>
+
+                <!-- Platform -->
+                <div class="result-card platform">
+                    <div class="result-label">PLATFORM MODE</div>
+                    <div class="result-title">🚀 跟随我们 · <span id="tierLabel">60%</span> 档</div>
+
+                    <div class="result-row">
+                        <span>接单数量（流量加持 +50%）</span>
+                        <span class="amount" id="platVolume">12 单</span>
+                    </div>
+                    <div class="result-row">
+                        <span>总流水</span>
+                        <span class="amount" id="platRevenue">300 万</span>
+                    </div>
+                    <div class="result-row">
+                        <span>顾问分成（<span id="tierPct">60%</span>）</span>
+                        <span class="amount" id="platGross">180 万</span>
+                    </div>
+                    <div class="result-row deduction subtle">
+                        <span>− 流量获客</span>
+                        <span style="color: var(--success);">0</span>
+                    </div>
+                    <div class="result-row deduction subtle">
+                        <span>− 工具外包</span>
+                        <span style="color: var(--success);">0</span>
+                    </div>
+                    <div class="result-row deduction subtle">
+                        <span>− 杂事时间</span>
+                        <span style="color: var(--success);">0</span>
+                    </div>
+                    <div class="result-row deduction subtle">
+                        <span>− 风险成本</span>
+                        <span style="color: var(--success);">平台兜底</span>
+                    </div>
+                    <div class="result-row final">
+                        <span>实际净收入</span>
+                        <span class="amount" id="platNet">180 万</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delta Banner -->
+            <div class="delta-banner">
+                <div class="delta-label">收入差额 · INCOME UPLIFT</div>
+                <div class="delta-value">+<span id="deltaPct">64</span>%</div>
+                <div class="delta-sub">
+                    多赚 <span id="deltaAmount">70</span> 万 · 还不操心杂事
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section 4: Growth Path -->
+<section id="growth" class="growth-section">
+    <div class="container">
+        <div class="section-tag">PART 04 · 三段式成长路径</div>
+        <h2 class="section-title">从"试试看"到"深度绑定"</h2>
+        <p class="section-sub">
+            每一段都有清晰的设计意图——让顾问在不知不觉中
+            从尝试者变成依赖者，最终成为共建者。
+        </p>
+
+        <div class="growth-timeline">
+            <div class="growth-line"></div>
+
+            <div class="growth-stage">
+                <div class="growth-dot">1</div>
+                <div class="growth-card">
+                    <div class="growth-stage-name">试水期</div>
+                    <div class="growth-time">0 – 3 个月</div>
+
+                    <div class="growth-detail">
+                        <div class="growth-detail-label">分成设计</div>
+                        <div class="growth-detail-value">平台让利 10%（顾问额外多拿）</div>
+                    </div>
+
+                    <div class="growth-detail">
+                        <div class="growth-detail-label">关键动作</div>
+                        <div class="growth-detail-value">配 1 名专属客户经理对接</div>
+                    </div>
+
+                    <div class="growth-purpose">
+                        <strong>设计意图：</strong>让顾问"先赢一单"——
+                        心理学上的承诺一致原则会让他们倾向继续合作。
+                    </div>
+                </div>
+            </div>
+
+            <div class="growth-stage">
+                <div class="growth-dot">2</div>
+                <div class="growth-card">
+                    <div class="growth-stage-name">稳定期</div>
+                    <div class="growth-time">3 – 12 个月</div>
+
+                    <div class="growth-detail">
+                        <div class="growth-detail-label">分成设计</div>
+                        <div class="growth-detail-value">回归标准 50% / 60%</div>
+                    </div>
+
+                    <div class="growth-detail">
+                        <div class="growth-detail-label">关键里程碑</div>
+                        <div class="growth-detail-value">完成 5 单 → "金牌顾问" + 流量倾斜 +10%</div>
+                    </div>
+
+                    <div class="growth-purpose">
+                        <strong>设计意图：</strong>让顾问形成路径依赖——
+                        既已投入精力适应系统，转换成本天然提高。
+                    </div>
+                </div>
+            </div>
+
+            <div class="growth-stage">
+                <div class="growth-dot">3</div>
+                <div class="growth-card">
+                    <div class="growth-stage-name">共建期</div>
+                    <div class="growth-time">12 个月 +</div>
+
+                    <div class="growth-detail">
+                        <div class="growth-detail-label">分成设计</div>
+                        <div class="growth-detail-value">标准分成 + 利润池分红 5–10%</div>
+                    </div>
+
+                    <div class="growth-detail">
+                        <div class="growth-detail-label">关键权益</div>
+                        <div class="growth-detail-value">参与战略、产品、定价决策</div>
+                    </div>
+
+                    <div class="growth-purpose">
+                        <strong>设计意图：</strong>把顶级顾问转化为合伙人心态——
+                        不再是"我在你这里打工"，而是"我们共同拥有这家公司"。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section 5: Partnership Ladder -->
+<section id="ladder" class="ladder-section">
+    <div class="container">
+        <div class="section-tag">PART 05 · 合伙人晋升通道</div>
+        <h2 class="section-title">从顾问到合伙人 · 五级阶梯</h2>
+        <p class="section-sub">
+            真正留住顶级顾问的，从来不是"分成多少"，而是"未来能走多远"。
+            这条通道清晰回答了顶级顾问最关心的问题：
+            <strong style="color: var(--navy);">"如果我全力以赴跟你们干，3 年后我会在哪里？"</strong>
+        </p>
+
+        <div class="ladder-list">
+            <!-- L1 -->
+            <div class="ladder-step l1">
+                <div class="ladder-rank">
+                    <div class="rank-num">L1</div>
+                    <div class="rank-bar"></div>
+                </div>
+                <div class="ladder-content">
+                    <div class="ladder-head">
+                        <div>
+                            <div class="ladder-name">协作顾问</div>
+                            <div class="ladder-en">INDEPENDENT PARTNER</div>
+                        </div>
+                        <div class="ladder-tenure">入门 · 0+ 月</div>
+                    </div>
+                    <div class="ladder-grid">
+                        <div class="ladder-col">
+                            <div class="col-title">💰 收入构成</div>
+                            <div class="income-line">50% 分成</div>
+                            <div class="income-est">预估年收入<strong>80–120 万</strong></div>
+                        </div>
+                        <div class="ladder-col">
+                            <div class="col-title">🎁 核心权益</div>
+                            <ul>
+                                <li>基础平台流量</li>
+                                <li>合同 / 收款 / 客服托管</li>
+                                <li>独立性 100% 保留，可多平台合作</li>
+                            </ul>
+                        </div>
+                        <div class="ladder-col">
+                            <div class="col-title">🚀 准入门槛</div>
+                            <ul>
+                                <li>通过基础资质审核</li>
+                                <li>3+ 年从业经验</li>
+                                <li>无业绩门槛</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- L2 -->
+            <div class="ladder-step l2">
+                <div class="ladder-rank">
+                    <div class="rank-num">L2</div>
+                    <div class="rank-bar"></div>
+                </div>
+                <div class="ladder-content">
+                    <div class="ladder-head">
+                        <div>
+                            <div class="ladder-name">认证顾问</div>
+                            <div class="ladder-en">FEATURED PARTNER</div>
+                        </div>
+                        <div class="ladder-tenure">站稳 · 3+ 月</div>
+                    </div>
+                    <div class="ladder-grid">
+                        <div class="ladder-col">
+                            <div class="col-title">💰 收入构成</div>
+                            <div class="income-line">60% 分成</div>
+                            <div class="income-est">预估年收入<strong>150–200 万</strong></div>
+                        </div>
+                        <div class="ladder-col">
+                            <div class="col-title">🎁 核心权益</div>
+                            <ul>
+                                <li>个人 IP 投资（专访 / 宣传片 / 主页）</li>
+                                <li>优质 lead 优先匹配</li>
+                                <li>联合品牌曝光机会</li>
+                            </ul>
+                        </div>
+                        <div class="ladder-col">
+                            <div class="col-title">🚀 准入门槛</div>
+                            <ul>
+                                <li>授予 IP 使用权</li>
+                                <li>完成 3 单试水签约</li>
+                                <li>客户满意度 85%+</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- L3 -->
+            <div class="ladder-step l3">
+                <div class="ladder-rank">
+                    <div class="rank-num">L3</div>
+                    <div class="rank-bar"></div>
+                </div>
+                <div class="ladder-content">
+                    <div class="ladder-head">
+                        <div>
+                            <div class="ladder-name">金牌顾问</div>
+                            <div class="ladder-en">GOLD CONSULTANT</div>
+                        </div>
+                        <div class="ladder-tenure">突破 · 12+ 月</div>
+                    </div>
+                    <div class="ladder-grid">
+                        <div class="ladder-col">
+                            <div class="col-title">💰 收入构成</div>
+                            <div class="income-line">60% + 流量加成 +15% + 季度奖金</div>
+                            <div class="income-est">预估年收入<strong>220–300 万</strong></div>
+                        </div>
+                        <div class="ladder-col">
+                            <div class="col-title">🎁 核心权益</div>
+                            <ul>
+                                <li>首页推荐位 + 案例署名权</li>
+                                <li>客户筛选权（可拒接低质客户）</li>
+                                <li>媒体 / 行业活动优先曝光</li>
+                                <li>顾问大会主讲嘉宾</li>
+                            </ul>
+                        </div>
+                        <div class="ladder-col">
+                            <div class="col-title">🚀 准入门槛</div>
+                            <ul>
+                                <li>累计签约 8+ 单</li>
+                                <li>客户满意度 90%+</li>
+                                <li>每月 1 次案例复盘分享</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- L4 -->
+            <div class="ladder-step l4">
+                <div class="ladder-rank">
+                    <div class="rank-num">L4</div>
+                    <div class="rank-bar"></div>
+                </div>
+                <div class="ladder-content">
+                    <div class="ladder-head">
+                        <div>
+                            <div class="ladder-name">业务合伙人</div>
+                            <div class="ladder-en">BUSINESS PARTNER</div>
+                        </div>
+                        <div class="ladder-tenure">深度共建 · 24+ 月</div>
+                    </div>
+                    <div class="ladder-grid">
+                        <div class="ladder-col">
+                            <div class="col-title">💰 收入构成</div>
+                            <div class="income-line">60% + 利润池分红 5% + 年保底</div>
+                            <div class="income-est">预估年收入<strong>320–450 万</strong></div>
+                        </div>
+                        <div class="ladder-col">
+                            <div class="col-title">🎁 核心权益</div>
+                            <ul>
+                                <li>独立工作室挂靠（"XX 工作室"品牌）</li>
+                                <li>业务线决策权（产品 / 定价 / 招聘）</li>
+                                <li>年保底 50–100 万兜底</li>
+                                <li>带教奖金（每带 1 名 L2 顾问 5 万）</li>
+                            </ul>
+                        </div>
+                        <div class="ladder-col">
+                            <div class="col-title">🚀 准入门槛</div>
+                            <ul>
+                                <li>累计签约 25+ 单</li>
+                                <li>带教 2 名新顾问通过 L2</li>
+                                <li>负责至少 1 个业务线</li>
+                                <li>合伙人委员会面试通过</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- L5 -->
+            <div class="ladder-step l5">
+                <div class="ladder-rank">
+                    <div class="rank-num">L5</div>
+                </div>
+                <div class="ladder-content">
+                    <div class="ladder-head">
+                        <div>
+                            <div class="ladder-name">核心合伙人</div>
+                            <div class="ladder-en">EQUITY PARTNER</div>
+                        </div>
+                        <div class="ladder-tenure">合伙人级 · 36+ 月</div>
+                    </div>
+                    <div class="ladder-grid">
+                        <div class="ladder-col">
+                            <div class="col-title">💰 收入构成</div>
+                            <div class="income-line">60% + 利润分红 + 真实股权增值</div>
+                            <div class="income-est">预估年收入<strong>500 万 +</strong></div>
+                        </div>
+                        <div class="ladder-col">
+                            <div class="col-title">🎁 核心权益</div>
+                            <ul>
+                                <li>真实股权 / 期权（0.5–2%）</li>
+                                <li>董事席位 + 战略决策权</li>
+                                <li>品牌联名权（"由 XXX 主理"）</li>
+                                <li>跟投权（按估值参与公司增资）</li>
+                                <li>退出时已 vested 股权永久保留</li>
+                            </ul>
+                        </div>
+                        <div class="ladder-col">
+                            <div class="col-title">🚀 准入门槛</div>
+                            <ul>
+                                <li>累计签约 50+ 单</li>
+                                <li>带出至少 1 名 L3 顾问</li>
+                                <li>负责公司战略级业务</li>
+                                <li>全体合伙人投票通过</li>
+                                <li>3 年独家合作承诺</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Income Trajectory Chart -->
+        <div class="trajectory-chart">
+            <h3>📈 同一位顾问的收入增长轨迹</h3>
+            <p class="trajectory-sub">
+                假设客单价 25 万 · 服务质量稳定 · 按通道节奏稳步晋升
+            </p>
+            <div class="trajectory-bars">
+                <div class="trajectory-row">
+                    <div class="trajectory-label">L1 协作顾问</div>
+                    <div class="trajectory-bar-container">
+                        <div class="trajectory-bar" style="width: 18%;">100 万</div>
+                    </div>
+                    <div class="trajectory-amount">~ 100 万</div>
+                </div>
+                <div class="trajectory-row">
+                    <div class="trajectory-label">L2 认证顾问</div>
+                    <div class="trajectory-bar-container">
+                        <div class="trajectory-bar" style="width: 32%;">180 万</div>
+                    </div>
+                    <div class="trajectory-amount">~ 180 万</div>
+                </div>
+                <div class="trajectory-row">
+                    <div class="trajectory-label">L3 金牌顾问</div>
+                    <div class="trajectory-bar-container">
+                        <div class="trajectory-bar" style="width: 47%;">260 万</div>
+                    </div>
+                    <div class="trajectory-amount">~ 260 万</div>
+                </div>
+                <div class="trajectory-row">
+                    <div class="trajectory-label">L4 业务合伙人</div>
+                    <div class="trajectory-bar-container">
+                        <div class="trajectory-bar" style="width: 68%;">380 万</div>
+                    </div>
+                    <div class="trajectory-amount">~ 380 万</div>
+                </div>
+                <div class="trajectory-row">
+                    <div class="trajectory-label">L5 核心合伙人</div>
+                    <div class="trajectory-bar-container">
+                        <div class="trajectory-bar peak" style="width: 100%;">600 万 +</div>
+                    </div>
+                    <div class="trajectory-amount" style="color: var(--gold-dark);">600 万 +</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ladder-callout">
+            <strong>关键设计哲学：</strong>
+            晋升不是"待够时间就升"，而是
+            <strong>"贡献越多，权益越大；权益越大，绑定越深"</strong>。
+            从乙方到合伙人，从打工心态到主人翁心态——
+            真正让顶级顾问"有奔头"的，是看得见、走得到的<strong>长期路径</strong>。
+        </div>
+    </div>
+</section>
+
+<!-- Section 6: Trust Building -->
+<section id="trust" class="trust-section">
+    <div class="container">
+        <div class="section-tag">PART 06 · 信任建设</div>
+        <h2 class="section-title">小动作 &gt; 大合同</h2>
+
+        <div class="trust-quote">
+            顶级顾问最大的恐惧不是"分成低"，
+            而是 <strong>"被平台薅完后抛弃"</strong>。
+            所以以下五个"小动作"，
+            比任何合同条款、市场承诺、PPT 宣讲都更打动人。
+        </div>
+
+        <div class="trust-grid">
+            <div class="trust-card">
+                <div class="trust-icon">⚡</div>
+                <div class="trust-name">48h 结算</div>
+                <div class="trust-desc">
+                    签约完成 48 小时打款，
+                    永不拖延。
+                </div>
+            </div>
+
+            <div class="trust-card">
+                <div class="trust-icon">📊</div>
+                <div class="trust-name">月度贡献报告</div>
+                <div class="trust-desc">
+                    你赚了多少、平台为你做了什么、
+                    客户口碑评分。
+                </div>
+            </div>
+
+            <div class="trust-card">
+                <div class="trust-icon">🔓</div>
+                <div class="trust-name">分成公开透明</div>
+                <div class="trust-desc">
+                    每一单都可追溯计算，
+                    顾问可随时核对。
+                </div>
+            </div>
+
+            <div class="trust-card">
+                <div class="trust-icon">🛡️</div>
+                <div class="trust-name">私客保护</div>
+                <div class="trust-desc">
+                    顾问自己带进来的客户，
+                    平台永不抢、永不挖。
+                </div>
+            </div>
+
+            <div class="trust-card">
+                <div class="trust-icon">🚪</div>
+                <div class="trust-name">体面离开</div>
+                <div class="trust-desc">
+                    离开时已 vested 奖金保留，
+                    IP 权属清晰。
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <div class="container">
+        <h2>
+            一句话总结
+        </h2>
+        <p class="summary">
+            留住顶级自由顾问的从来不是
+            <span style="color: var(--gold); font-weight: 700;">"高分成"</span>，
+            而是<br>
+            <span style="color: var(--gold); font-weight: 700;">"让他赚得更多 + 操心更少 + 品牌更亮"</span>。
+        </p>
+        <div class="cta-buttons">
+            <a href="admissions-consulting-model.html" class="cta-button">
+                查看组织模型 →
+            </a>
+            <a href="revenue-model.html" class="cta-button outline">
+                查看收入模型 →
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    EDU·PARTNERS Consultant Partnership Model · 让顶级自由顾问主动跟随你的合作模型设计
+</footer>
+
+<script>
+    // Fade-in observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section').forEach(s => {
+        s.classList.add('fade-in');
+        observer.observe(s);
+    });
+
+    // ===== Income Calculator =====
+    const priceSlider = document.getElementById('priceSlider');
+    const casesSlider = document.getElementById('casesSlider');
+    const tierBtns = document.querySelectorAll('.tier-btn');
+
+    const priceDisplay = document.getElementById('priceDisplay');
+    const casesDisplay = document.getElementById('casesDisplay');
+    const tierLabel = document.getElementById('tierLabel');
+    const tierPct = document.getElementById('tierPct');
+
+    let currentTier = 60;
+
+    function fmt(n) {
+        return n.toFixed(0) + ' 万';
+    }
+
+    function calculate() {
+        const price = parseInt(priceSlider.value);
+        const soloCases = parseInt(casesSlider.value);
+
+        priceDisplay.textContent = price;
+        casesDisplay.textContent = soloCases;
+        tierLabel.textContent = currentTier + '%';
+        tierPct.textContent = currentTier + '%';
+
+        // Solo calculations
+        const soloRevenue = price * soloCases;
+        const soloMarketing = soloRevenue * 0.15;
+        const soloTools = soloRevenue * 0.12;
+        const soloOps = price * 1.0;  // ~1 case worth of time
+        const soloRisk = soloRevenue * 0.05;
+        const soloNet = soloRevenue - soloMarketing - soloTools - soloOps - soloRisk;
+
+        document.getElementById('soloVolume').textContent = soloCases + ' 单';
+        document.getElementById('soloRevenue').textContent = fmt(soloRevenue);
+        document.getElementById('soloGross').textContent = fmt(soloRevenue);
+        document.getElementById('soloMarketing').textContent = '-' + fmt(soloMarketing);
+        document.getElementById('soloTools').textContent = '-' + fmt(soloTools);
+        document.getElementById('soloOps').textContent = '-' + fmt(soloOps);
+        document.getElementById('soloRisk').textContent = '-' + fmt(soloRisk);
+        document.getElementById('soloNet').textContent = fmt(soloNet);
+
+        // Platform calculations (50% gives +30% volume, 60% gives +50% volume)
+        const volumeBoost = currentTier === 60 ? 1.5 : 1.3;
+        const platCases = Math.round(soloCases * volumeBoost);
+        const platRevenue = price * platCases;
+        const platGross = platRevenue * (currentTier / 100);
+        const platNet = platGross;  // No deductions
+
+        document.getElementById('platVolume').textContent = platCases + ' 单';
+        document.getElementById('platRevenue').textContent = fmt(platRevenue);
+        document.getElementById('platGross').textContent = fmt(platGross);
+        document.getElementById('platNet').textContent = fmt(platNet);
+
+        // Delta
+        const delta = platNet - soloNet;
+        const deltaPct = soloNet > 0 ? Math.round((delta / soloNet) * 100) : 0;
+
+        document.getElementById('deltaPct').textContent = deltaPct;
+        document.getElementById('deltaAmount').textContent = delta.toFixed(0);
+    }
+
+    priceSlider.addEventListener('input', calculate);
+    casesSlider.addEventListener('input', calculate);
+
+    tierBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            tierBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentTier = parseInt(btn.dataset.tier);
+            calculate();
+        });
+    });
+
+    calculate();
+</script>
+
+</body>
+</html>

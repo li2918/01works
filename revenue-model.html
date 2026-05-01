@@ -1,0 +1,1934 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>升学顾问公司 · 收入模型 | Revenue Model</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+        --navy: #0a1f44;
+        --navy-light: #1a3a6e;
+        --navy-dark: #050d20;
+        --gold: #c9a961;
+        --gold-light: #e5d29a;
+        --cream: #faf7f0;
+        --gray-50: #f8f9fa;
+        --gray-100: #e9ecef;
+        --gray-200: #dee2e6;
+        --gray-400: #6c757d;
+        --gray-700: #343a40;
+        --gray-900: #1a1a1a;
+        --accent: #d63384;
+        --success: #2d7a4f;
+        --warning: #e07b00;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                     "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        line-height: 1.7;
+        color: var(--gray-900);
+        background: #fff;
+        font-size: 16px;
+    }
+
+    /* ========== Navigation ========== */
+    nav {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        background: rgba(10, 31, 68, 0.95);
+        backdrop-filter: blur(12px);
+        z-index: 1000;
+        padding: 18px 0;
+        border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+    }
+
+    .nav-container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav-logo {
+        color: var(--gold);
+        font-weight: 700;
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 28px;
+        list-style: none;
+        align-items: center;
+    }
+
+    .nav-links a {
+        color: rgba(255, 255, 255, 0.85);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-back {
+        padding: 8px 18px;
+        border: 1px solid rgba(201, 169, 97, 0.5);
+        border-radius: 30px;
+        font-size: 13px !important;
+    }
+
+    .nav-back:hover {
+        background: var(--gold);
+        color: var(--navy) !important;
+    }
+
+    /* ========== Hero ========== */
+    .hero {
+        min-height: 90vh;
+        background: linear-gradient(135deg, #0a1f44 0%, #1a3a6e 50%, #2c5282 100%);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        padding: 120px 32px 80px;
+    }
+
+    .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+            radial-gradient(circle at 80% 30%, rgba(201, 169, 97, 0.18) 0%, transparent 45%),
+            radial-gradient(circle at 15% 70%, rgba(201, 169, 97, 0.12) 0%, transparent 45%);
+        pointer-events: none;
+    }
+
+    .hero-content {
+        max-width: 1280px;
+        margin: 0 auto;
+        width: 100%;
+        position: relative;
+    }
+
+    .hero-tag {
+        display: inline-block;
+        padding: 8px 18px;
+        background: rgba(201, 169, 97, 0.15);
+        border: 1px solid rgba(201, 169, 97, 0.4);
+        border-radius: 30px;
+        color: var(--gold);
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        margin-bottom: 32px;
+    }
+
+    .hero h1 {
+        font-size: clamp(36px, 6vw, 68px);
+        font-weight: 700;
+        line-height: 1.15;
+        margin-bottom: 24px;
+        letter-spacing: -1px;
+    }
+
+    .hero h1 .gold { color: var(--gold); }
+
+    .hero-sub {
+        font-size: clamp(16px, 2vw, 20px);
+        color: rgba(255, 255, 255, 0.78);
+        max-width: 800px;
+        line-height: 1.6;
+        margin-bottom: 56px;
+    }
+
+    .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+    }
+
+    .kpi-card {
+        padding: 28px 24px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(201, 169, 97, 0.25);
+        border-radius: 8px;
+        backdrop-filter: blur(10px);
+    }
+
+    .kpi-card .kpi-label {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.6);
+        letter-spacing: 1.5px;
+        margin-bottom: 12px;
+    }
+
+    .kpi-card .kpi-value {
+        font-size: 36px;
+        font-weight: 700;
+        color: var(--gold);
+        line-height: 1;
+        margin-bottom: 8px;
+    }
+
+    .kpi-card .kpi-unit {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* ========== Sections ========== */
+    section { padding: 100px 32px; }
+
+    .container { max-width: 1280px; margin: 0 auto; }
+
+    .section-tag {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--gold);
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+    }
+
+    .section-title {
+        font-size: clamp(28px, 4vw, 44px);
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 20px;
+        letter-spacing: -0.5px;
+        line-height: 1.2;
+    }
+
+    .section-sub {
+        font-size: 18px;
+        color: var(--gray-400);
+        margin-bottom: 64px;
+        max-width: 820px;
+        line-height: 1.6;
+    }
+
+    /* ========== Revenue Streams ========== */
+    .streams-section { background: var(--cream); }
+
+    .streams-overview {
+        background: #fff;
+        border-radius: 12px;
+        padding: 40px;
+        margin-bottom: 40px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+    }
+
+    .streams-bar {
+        display: flex;
+        height: 60px;
+        border-radius: 6px;
+        overflow: hidden;
+        margin-bottom: 24px;
+    }
+
+    .stream-segment {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 700;
+        font-size: 14px;
+        transition: flex 0.3s;
+        position: relative;
+    }
+
+    .stream-segment:nth-child(1) { background: var(--navy); flex: 60; }
+    .stream-segment:nth-child(2) { background: var(--navy-light); flex: 18; }
+    .stream-segment:nth-child(3) { background: var(--gold); flex: 12; }
+    .stream-segment:nth-child(4) { background: #b08e4a; flex: 7; }
+    .stream-segment:nth-child(5) { background: var(--success); flex: 3; }
+
+    .streams-legend {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 16px;
+    }
+
+    .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: var(--gray-700);
+    }
+
+    .legend-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 2px;
+        flex-shrink: 0;
+    }
+
+    .streams-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        margin-top: 32px;
+    }
+
+    .stream-card {
+        background: #fff;
+        padding: 32px;
+        border-radius: 8px;
+        border-left: 5px solid var(--navy);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .stream-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .stream-card.s2 { border-left-color: var(--navy-light); }
+    .stream-card.s3 { border-left-color: var(--gold); }
+    .stream-card.s4 { border-left-color: #b08e4a; }
+    .stream-card.s5 { border-left-color: var(--success); }
+
+    .stream-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 16px;
+    }
+
+    .stream-name {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--navy);
+    }
+
+    .stream-pct {
+        background: var(--navy);
+        color: #fff;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .stream-card.s2 .stream-pct { background: var(--navy-light); }
+    .stream-card.s3 .stream-pct { background: var(--gold); }
+    .stream-card.s4 .stream-pct { background: #b08e4a; }
+    .stream-card.s5 .stream-pct { background: var(--success); }
+
+    .stream-desc {
+        color: var(--gray-700);
+        font-size: 14px;
+        line-height: 1.7;
+        margin-bottom: 16px;
+    }
+
+    .stream-examples {
+        padding: 14px 18px;
+        background: var(--cream);
+        border-radius: 4px;
+        font-size: 13px;
+        color: var(--gray-700);
+    }
+
+    .stream-examples strong {
+        color: var(--navy);
+        display: block;
+        margin-bottom: 6px;
+    }
+
+    /* ========== Pricing Section ========== */
+    .pricing-section { background: #fff; }
+
+    .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: 40px;
+    }
+
+    .pricing-tier {
+        background: #fff;
+        border: 2px solid var(--gray-200);
+        border-radius: 12px;
+        padding: 40px 32px;
+        position: relative;
+        transition: all 0.3s;
+    }
+
+    .pricing-tier:hover {
+        border-color: var(--gold);
+        transform: translateY(-6px);
+        box-shadow: 0 20px 48px rgba(10, 31, 68, 0.1);
+    }
+
+    .pricing-tier.featured {
+        background: var(--navy);
+        color: #fff;
+        border-color: var(--gold);
+        transform: scale(1.02);
+    }
+
+    .pricing-tier.featured::before {
+        content: "推荐";
+        position: absolute;
+        top: -14px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--gold);
+        color: var(--navy);
+        padding: 6px 18px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    .tier-name {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--gold);
+        letter-spacing: 2px;
+        margin-bottom: 8px;
+    }
+
+    .tier-tagline {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 24px;
+        color: var(--navy);
+    }
+
+    .pricing-tier.featured .tier-tagline { color: #fff; }
+
+    .tier-price {
+        margin-bottom: 28px;
+        padding-bottom: 24px;
+        border-bottom: 1px dashed var(--gray-200);
+    }
+
+    .pricing-tier.featured .tier-price {
+        border-bottom-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .tier-price .price-num {
+        font-size: 42px;
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1;
+    }
+
+    .pricing-tier.featured .tier-price .price-num { color: var(--gold); }
+
+    .tier-price .price-range {
+        font-size: 14px;
+        color: var(--gray-400);
+        margin-top: 4px;
+    }
+
+    .pricing-tier.featured .tier-price .price-range { color: rgba(255, 255, 255, 0.65); }
+
+    .tier-features {
+        list-style: none;
+    }
+
+    .tier-features li {
+        padding: 10px 0 10px 28px;
+        position: relative;
+        font-size: 14px;
+        color: var(--gray-700);
+        line-height: 1.5;
+    }
+
+    .pricing-tier.featured .tier-features li { color: rgba(255, 255, 255, 0.92); }
+
+    .tier-features li::before {
+        content: "✓";
+        position: absolute;
+        left: 4px;
+        top: 10px;
+        color: var(--success);
+        font-weight: 700;
+    }
+
+    .pricing-tier.featured .tier-features li::before { color: var(--gold); }
+
+    .tier-target {
+        margin-top: 24px;
+        padding: 14px;
+        background: var(--cream);
+        border-radius: 4px;
+        font-size: 12px;
+        color: var(--gray-700);
+        text-align: center;
+    }
+
+    .pricing-tier.featured .tier-target {
+        background: rgba(201, 169, 97, 0.15);
+        color: rgba(255, 255, 255, 0.85);
+    }
+
+    /* ========== Direction Pricing Table ========== */
+    .direction-section {
+        margin-top: 80px;
+        padding-top: 64px;
+        border-top: 1px solid var(--gray-100);
+    }
+
+    .direction-section h3 {
+        font-size: 28px;
+        color: var(--navy);
+        margin-bottom: 16px;
+    }
+
+    .direction-section .sub {
+        color: var(--gray-400);
+        margin-bottom: 32px;
+    }
+
+    .direction-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+        border: 1px solid var(--gray-100);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .direction-table th {
+        background: var(--navy);
+        color: #fff;
+        padding: 16px 20px;
+        text-align: left;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+
+    .direction-table td {
+        padding: 18px 20px;
+        border-bottom: 1px solid var(--gray-100);
+        font-size: 14px;
+    }
+
+    .direction-table tr:last-child td { border-bottom: none; }
+
+    .direction-table tr:hover { background: var(--cream); }
+
+    .direction-table .market {
+        font-weight: 700;
+        color: var(--navy);
+    }
+
+    .direction-table .price {
+        color: var(--gold);
+        font-weight: 700;
+    }
+
+    .direction-table .badge {
+        display: inline-block;
+        padding: 3px 10px;
+        background: var(--cream);
+        color: var(--navy);
+        border-radius: 12px;
+        font-size: 11px;
+        font-weight: 600;
+        margin-right: 4px;
+    }
+
+    /* ========== Unit Economics ========== */
+    .unit-section { background: var(--cream); }
+
+    .unit-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        margin-top: 40px;
+    }
+
+    .unit-card {
+        background: #fff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    }
+
+    .unit-card h3 {
+        font-size: 20px;
+        color: var(--navy);
+        margin-bottom: 24px;
+        padding-bottom: 16px;
+        border-bottom: 2px solid var(--gold);
+    }
+
+    .unit-row {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--gray-100);
+        align-items: center;
+    }
+
+    .unit-row.header {
+        font-size: 12px;
+        color: var(--gray-400);
+        letter-spacing: 1px;
+        font-weight: 600;
+        padding-bottom: 12px;
+    }
+
+    .unit-row.total {
+        margin-top: 12px;
+        padding-top: 18px;
+        border-top: 2px solid var(--navy);
+        border-bottom: none;
+        font-weight: 700;
+        font-size: 17px;
+        color: var(--navy);
+    }
+
+    .unit-row .label {
+        font-size: 14px;
+        color: var(--gray-700);
+    }
+
+    .unit-row.total .label { color: var(--navy); }
+
+    .unit-row .amount {
+        font-size: 15px;
+        color: var(--navy);
+        font-weight: 600;
+        text-align: right;
+    }
+
+    .unit-row .pct {
+        font-size: 13px;
+        color: var(--gray-400);
+        text-align: right;
+    }
+
+    .unit-row.profit .amount { color: var(--success); }
+    .unit-row.profit .pct { color: var(--success); font-weight: 700; }
+
+    .unit-bar-container {
+        margin-top: 28px;
+        padding: 20px;
+        background: var(--cream);
+        border-radius: 6px;
+    }
+
+    .unit-bar-label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+        margin-bottom: 8px;
+    }
+
+    .unit-bar {
+        height: 12px;
+        background: var(--gray-100);
+        border-radius: 6px;
+        overflow: hidden;
+    }
+
+    .unit-bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--gold) 0%, var(--success) 100%);
+        border-radius: 6px;
+    }
+
+    /* ========== Flywheel ========== */
+    .flywheel-section { background: #fff; }
+
+    .flywheel-container {
+        max-width: 900px;
+        margin: 60px auto 0;
+        position: relative;
+    }
+
+    .flywheel {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+    }
+
+    .flywheel-step {
+        background: var(--cream);
+        padding: 32px;
+        border-radius: 8px;
+        position: relative;
+        border-top: 4px solid var(--gold);
+    }
+
+    .flywheel-step .step-num {
+        position: absolute;
+        top: -20px;
+        right: 24px;
+        width: 40px;
+        height: 40px;
+        background: var(--navy);
+        color: var(--gold);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 16px;
+        border: 4px solid #fff;
+    }
+
+    .flywheel-step h4 {
+        font-size: 18px;
+        color: var(--navy);
+        margin-bottom: 12px;
+    }
+
+    .flywheel-step p {
+        font-size: 14px;
+        color: var(--gray-700);
+        line-height: 1.6;
+    }
+
+    .flywheel-step .metric {
+        display: inline-block;
+        margin-top: 14px;
+        padding: 6px 14px;
+        background: var(--navy);
+        color: var(--gold);
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    /* ========== Forecast / Projection ========== */
+    .forecast-section { background: var(--navy); color: #fff; }
+
+    .forecast-section .section-title { color: #fff; }
+
+    .forecast-section .section-sub { color: rgba(255, 255, 255, 0.7); }
+
+    .forecast-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: 40px;
+    }
+
+    .forecast-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(201, 169, 97, 0.25);
+        border-radius: 12px;
+        padding: 32px;
+        backdrop-filter: blur(10px);
+    }
+
+    .forecast-card.featured {
+        border-color: var(--gold);
+        background: rgba(201, 169, 97, 0.08);
+    }
+
+    .forecast-year {
+        font-size: 14px;
+        color: var(--gold);
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin-bottom: 8px;
+    }
+
+    .forecast-stage {
+        font-size: 22px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 28px;
+    }
+
+    .forecast-metrics {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        padding: 20px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .forecast-metric .m-label {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.55);
+        letter-spacing: 1px;
+        margin-bottom: 6px;
+    }
+
+    .forecast-metric .m-value {
+        font-size: 24px;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1;
+    }
+
+    .forecast-metric .m-value.gold { color: var(--gold); }
+
+    .forecast-metric .m-unit {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.5);
+        margin-top: 4px;
+    }
+
+    .forecast-bottom {
+        margin-top: 24px;
+    }
+
+    .forecast-bottom .b-label {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.55);
+        letter-spacing: 1px;
+        margin-bottom: 6px;
+    }
+
+    .forecast-bottom .b-value {
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--gold);
+        line-height: 1;
+    }
+
+    .forecast-bottom .b-sub {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.6);
+        margin-top: 6px;
+    }
+
+    /* ========== Margin Structure ========== */
+    .margin-section { background: var(--cream); }
+
+    .margin-waterfall {
+        margin-top: 40px;
+        background: #fff;
+        padding: 48px;
+        border-radius: 12px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+    }
+
+    .waterfall-row {
+        display: grid;
+        grid-template-columns: 200px 1fr 100px 100px;
+        align-items: center;
+        gap: 16px;
+        padding: 14px 0;
+    }
+
+    .waterfall-row.header {
+        font-size: 12px;
+        color: var(--gray-400);
+        letter-spacing: 1.5px;
+        font-weight: 700;
+        padding-bottom: 16px;
+        border-bottom: 2px solid var(--navy);
+        margin-bottom: 8px;
+    }
+
+    .waterfall-row.total {
+        margin-top: 12px;
+        padding-top: 20px;
+        border-top: 2px solid var(--success);
+        font-weight: 700;
+    }
+
+    .waterfall-row.total .w-label { color: var(--success); font-size: 17px; }
+    .waterfall-row.total .w-value { color: var(--success); font-size: 17px; }
+    .waterfall-row.total .w-pct { color: var(--success); font-weight: 700; }
+
+    .waterfall-row.subtotal {
+        font-weight: 700;
+        background: var(--gray-50);
+        margin: 4px -16px;
+        padding: 14px 16px;
+        border-radius: 4px;
+    }
+
+    .w-label {
+        font-size: 14px;
+        color: var(--gray-900);
+    }
+
+    .w-bar-container {
+        height: 28px;
+        background: var(--gray-100);
+        border-radius: 4px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .w-bar {
+        height: 100%;
+        border-radius: 4px;
+        transition: width 0.6s;
+    }
+
+    .w-bar.positive { background: linear-gradient(90deg, var(--success) 0%, #4a9d70 100%); }
+    .w-bar.negative { background: linear-gradient(90deg, #d63384 0%, #e8579e 100%); }
+    .w-bar.neutral { background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%); }
+
+    .w-value {
+        text-align: right;
+        font-weight: 600;
+        color: var(--navy);
+        font-size: 14px;
+    }
+
+    .w-value.minus { color: var(--accent); }
+    .w-value.plus { color: var(--success); }
+
+    .w-pct {
+        text-align: right;
+        font-size: 13px;
+        color: var(--gray-400);
+    }
+
+    /* ========== Levers ========== */
+    .levers-section { background: #fff; }
+
+    .levers-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        margin-top: 40px;
+    }
+
+    .lever-card {
+        background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+        color: #fff;
+        padding: 32px 24px;
+        border-radius: 12px;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s;
+    }
+
+    .lever-card:hover { transform: translateY(-4px); }
+
+    .lever-card::before {
+        content: "";
+        position: absolute;
+        top: -40px;
+        right: -40px;
+        width: 120px;
+        height: 120px;
+        background: rgba(201, 169, 97, 0.1);
+        border-radius: 50%;
+    }
+
+    .lever-icon {
+        font-size: 32px;
+        margin-bottom: 16px;
+        position: relative;
+    }
+
+    .lever-name {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        color: var(--gold);
+    }
+
+    .lever-impact {
+        font-size: 28px;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1.1;
+        margin-bottom: 12px;
+    }
+
+    .lever-desc {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.75);
+        line-height: 1.6;
+    }
+
+    /* ========== CTA ========== */
+    .cta-section {
+        background: linear-gradient(135deg, #050d20 0%, #0a1f44 100%);
+        color: #fff;
+        text-align: center;
+        padding: 100px 32px;
+    }
+
+    .cta-section h2 {
+        font-size: clamp(28px, 4vw, 42px);
+        margin-bottom: 24px;
+        line-height: 1.3;
+    }
+
+    .cta-section h2 .gold-text { color: var(--gold); }
+
+    .cta-section p {
+        max-width: 760px;
+        margin: 0 auto 40px;
+        font-size: 17px;
+        color: rgba(255, 255, 255, 0.78);
+        line-height: 1.8;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .cta-button {
+        display: inline-block;
+        padding: 14px 32px;
+        background: var(--gold);
+        color: var(--navy);
+        text-decoration: none;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: 1px;
+        transition: all 0.3s;
+    }
+
+    .cta-button:hover {
+        background: var(--gold-light);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(201, 169, 97, 0.3);
+    }
+
+    .cta-button.outline {
+        background: transparent;
+        border: 2px solid var(--gold);
+        color: var(--gold);
+    }
+
+    .cta-button.outline:hover {
+        background: var(--gold);
+        color: var(--navy);
+    }
+
+    footer {
+        background: var(--navy-dark);
+        color: rgba(255, 255, 255, 0.5);
+        padding: 32px;
+        text-align: center;
+        font-size: 13px;
+        border-top: 1px solid rgba(201, 169, 97, 0.2);
+    }
+
+    /* Disclaimer */
+    .disclaimer {
+        margin-top: 32px;
+        padding: 16px 24px;
+        background: rgba(224, 123, 0, 0.08);
+        border-left: 3px solid var(--warning);
+        border-radius: 4px;
+        font-size: 13px;
+        color: var(--gray-700);
+        line-height: 1.6;
+    }
+
+    .disclaimer strong { color: var(--warning); }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+        .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+        .pricing-grid,
+        .streams-grid,
+        .unit-grid,
+        .forecast-grid,
+        .flywheel { grid-template-columns: 1fr; }
+        .levers-grid { grid-template-columns: repeat(2, 1fr); }
+        .pricing-tier.featured { transform: none; }
+        .nav-links li:not(:last-child) { display: none; }
+        section { padding: 70px 24px; }
+        .streams-legend { grid-template-columns: repeat(2, 1fr); }
+        .waterfall-row { grid-template-columns: 140px 1fr 80px 80px; gap: 10px; font-size: 13px; }
+    }
+
+    @media (max-width: 640px) {
+        .kpi-grid { grid-template-columns: 1fr; }
+        .levers-grid { grid-template-columns: 1fr; }
+        .streams-legend { grid-template-columns: 1fr; }
+        .stream-segment { font-size: 11px; }
+        .waterfall-row { grid-template-columns: 100px 1fr 60px; font-size: 12px; }
+        .waterfall-row .w-pct { display: none; }
+    }
+
+    .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.7s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-container">
+        <div class="nav-logo">EDU·PARTNERS</div>
+        <ul class="nav-links">
+            <li><a href="#streams">收入来源</a></li>
+            <li><a href="#pricing">定价策略</a></li>
+            <li><a href="#unit">单位经济</a></li>
+            <li><a href="#forecast">三年预测</a></li>
+            <li><a href="#margin">利润结构</a></li>
+            <li><a href="admissions-consulting-model.html" class="nav-back">← 组织模型</a></li>
+            <li><a href="consultant-partnership.html" style="padding: 8px 18px; background: var(--gold); color: var(--navy) !important; border-radius: 30px; font-size: 13px; font-weight: 700; text-decoration: none;">顾问合作 →</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-content">
+        <span class="hero-tag">REVENUE MODEL · 收入引擎</span>
+        <h1>
+            收入引擎<br>
+            <span class="gold">五维设计</span>
+        </h1>
+        <p class="hero-sub">
+            一家高端升学顾问公司的财务模型，不只是"收咨询费"那么简单。
+            真正可持续的收入引擎，由清晰的客单价分层、丰富的产品矩阵、
+            高复购的服务结构和稳定的获客飞轮共同驱动。
+        </p>
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-label">TARGET ACV · 目标客单价</div>
+                <div class="kpi-value">25 万</div>
+                <div class="kpi-unit">人民币 / 客户 / 申请季</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">GROSS MARGIN · 毛利率</div>
+                <div class="kpi-value">52%</div>
+                <div class="kpi-unit">扣除顾问与文书成本</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">SERVICE CYCLE · 服务周期</div>
+                <div class="kpi-value">12-24</div>
+                <div class="kpi-unit">个月</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">REFERRAL RATE · 转介绍率</div>
+                <div class="kpi-value">35%+</div>
+                <div class="kpi-unit">老客户驱动新客户</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section 1: Revenue Streams -->
+<section id="streams" class="streams-section">
+    <div class="container">
+        <div class="section-tag">PART 01 · 收入来源</div>
+        <h2 class="section-title">五大收入来源结构</h2>
+        <p class="section-sub">
+            高端升学公司的收入不应该单一依赖"咨询费"。
+            真正稳定的收入引擎，由核心服务、增值服务、背景提升、B2B 合作和续约转介绍五条腿支撑。
+        </p>
+
+        <div class="streams-overview">
+            <div class="streams-bar">
+                <div class="stream-segment">核心咨询 60%</div>
+                <div class="stream-segment">增值服务 18%</div>
+                <div class="stream-segment">背景提升 12%</div>
+                <div class="stream-segment">B2B 7%</div>
+                <div class="stream-segment">其他 3%</div>
+            </div>
+
+            <div class="streams-legend">
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: var(--navy);"></div>
+                    核心咨询包
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: var(--navy-light);"></div>
+                    增值服务
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: var(--gold);"></div>
+                    背景提升
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: #b08e4a;"></div>
+                    B2B 合作
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: var(--success);"></div>
+                    其他
+                </div>
+            </div>
+        </div>
+
+        <div class="streams-grid">
+            <div class="stream-card">
+                <div class="stream-header">
+                    <div class="stream-name">① 核心咨询包</div>
+                    <div class="stream-pct">~60%</div>
+                </div>
+                <p class="stream-desc">
+                    申请季全程咨询服务（选校、文书、面试、提交、Waitlist 应对）。
+                    根据申请方向与套餐档次定价，是公司的现金流基础。
+                </p>
+                <div class="stream-examples">
+                    <strong>典型产品</strong>
+                    美本精英版（30万）· 美本旗舰版（60万）· 英本G5包（25万）·
+                    美研全程（10万）· 港新申请（12万）
+                </div>
+            </div>
+
+            <div class="stream-card s2">
+                <div class="stream-header">
+                    <div class="stream-name">② 增值服务</div>
+                    <div class="stream-pct">~18%</div>
+                </div>
+                <p class="stream-desc">
+                    模块化加购服务，提升客单价的关键引擎。
+                    不绑定整体套餐，老客户与新客户均可单独购买。
+                </p>
+                <div class="stream-examples">
+                    <strong>典型产品</strong>
+                    顶级名师 1v1（5-15万）· 文书精修（2-5万）· 模拟面试包（1-3万）·
+                    Waitlist 救援（2-5万）· 转学 / 二次申请
+                </div>
+            </div>
+
+            <div class="stream-card s3">
+                <div class="stream-header">
+                    <div class="stream-name">③ 背景提升</div>
+                    <div class="stream-pct">~12%</div>
+                </div>
+                <p class="stream-desc">
+                    在申请前 1-2 年介入，帮助学生构建差异化软实力。
+                    自营 + 合作两种模式，毛利率高，且能提前锁定咨询客户。
+                </p>
+                <div class="stream-examples">
+                    <strong>典型产品</strong>
+                    海外科研项目（3-8万）· 国际竞赛辅导（2-6万）·
+                    暑期夏校申请（1-3万）· 公益 / 创业项目
+                </div>
+            </div>
+
+            <div class="stream-card s4">
+                <div class="stream-header">
+                    <div class="stream-name">④ B2B 合作</div>
+                    <div class="stream-pct">~7%</div>
+                </div>
+                <p class="stream-desc">
+                    与国际学校、双语学校、教育机构的官方合作。
+                    单笔体量大，且是稳定的获客通道，强化品牌信任度。
+                </p>
+                <div class="stream-examples">
+                    <strong>典型形式</strong>
+                    驻校升学顾问服务 · 学校升学讲座 / 工作坊 ·
+                    教师升学指导培训 · 海外大学合作返点
+                </div>
+            </div>
+
+            <div class="stream-card s5">
+                <div class="stream-header">
+                    <div class="stream-name">⑤ 内容 / 数据产品</div>
+                    <div class="stream-pct">~3%</div>
+                </div>
+                <p class="stream-desc">
+                    长期建立品牌护城河的产品。短期收入贡献小，
+                    但能持续带来高质量流量并支撑客单价。
+                </p>
+                <div class="stream-examples">
+                    <strong>典型形式</strong>
+                    家长沙龙 / 付费课程（1-3千 / 人）· 数据订阅产品 ·
+                    出版物 / 申请白皮书 · 合作返点
+                </div>
+            </div>
+
+            <div class="stream-card" style="border-left-color: var(--accent);">
+                <div class="stream-header">
+                    <div class="stream-name">🔄 续约 / 转介绍</div>
+                    <div class="stream-pct" style="background: var(--accent);">放大器</div>
+                </div>
+                <p class="stream-desc">
+                    不是独立收入条线，而是<strong>所有条线的放大器</strong>。
+                    一个家庭从背景提升 → 美本 → 美研 → 二孩，
+                    LTV 可达单次咨询的 2-3 倍。
+                </p>
+                <div class="stream-examples">
+                    <strong>关键数据</strong>
+                    转介绍率目标 35%+ · 同家庭复购率 25%+ ·
+                    老客户带来获客成本仅为新客户的 1/5
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section 2: Pricing -->
+<section id="pricing" class="pricing-section">
+    <div class="container">
+        <div class="section-tag">PART 02 · 定价策略</div>
+        <h2 class="section-title">三档套餐 · 价值定价</h2>
+        <p class="section-sub">
+            不打"价格战"，打"价值战"。三档套餐针对不同家庭画像，
+            而不是用低价吸引所有人。每一档都有清晰的差异化价值与目标客群。
+        </p>
+
+        <div class="pricing-grid">
+            <!-- Tier 1 -->
+            <div class="pricing-tier">
+                <div class="tier-name">PRECISION · 精准版</div>
+                <div class="tier-tagline">让每分钱都用在刀刃上</div>
+
+                <div class="tier-price">
+                    <div class="price-num">15-25万</div>
+                    <div class="price-range">人民币 / 申请季</div>
+                </div>
+
+                <ul class="tier-features">
+                    <li>资深顾问主导（L2-L3）</li>
+                    <li>选校 + 文书全程</li>
+                    <li>5-8 所学校申请</li>
+                    <li>2 轮模拟面试</li>
+                    <li>标化考试规划建议</li>
+                    <li>每月 1 次家长沟通</li>
+                </ul>
+
+                <div class="tier-target">
+                    适合 GPA 优秀、目标 TOP 30-50 的中产家庭
+                </div>
+            </div>
+
+            <!-- Tier 2 - Featured -->
+            <div class="pricing-tier featured">
+                <div class="tier-name">ELITE · 旗舰版</div>
+                <div class="tier-tagline">通向 TOP 20 的全程陪跑</div>
+
+                <div class="tier-price">
+                    <div class="price-num">35-60万</div>
+                    <div class="price-range">人民币 / 申请季</div>
+                </div>
+
+                <ul class="tier-features">
+                    <li>顶级顾问主导（L4 Principal）</li>
+                    <li>1+N 团队制服务</li>
+                    <li>10-15 所学校申请</li>
+                    <li>无限次文书修改</li>
+                    <li>5+ 轮模拟面试 + 面试教练</li>
+                    <li>背景提升项目对接</li>
+                    <li>校友 / 内部推荐资源</li>
+                    <li>每周家庭沟通 + 微信即时响应</li>
+                </ul>
+
+                <div class="tier-target">
+                    主力产品 · 目标 TOP 20 / G5 / Ivy 的家庭
+                </div>
+            </div>
+
+            <!-- Tier 3 -->
+            <div class="pricing-tier">
+                <div class="tier-name">CUSTOM · 全定制</div>
+                <div class="tier-tagline">为最顶尖的少数家庭</div>
+
+                <div class="tier-price">
+                    <div class="price-num">80-150万</div>
+                    <div class="price-range">人民币 / 申请季</div>
+                </div>
+
+                <ul class="tier-features">
+                    <li>合伙人级顾问全程主导（L5）</li>
+                    <li>专属服务团队（4-6 人）</li>
+                    <li>全方位背景定制</li>
+                    <li>顶级科研 / 出版资源</li>
+                    <li>HYP / Stanford / MIT 校友 mentor</li>
+                    <li>多国家多专业组合申请</li>
+                    <li>专属法务 / 财务咨询</li>
+                    <li>24h 响应 + 紧急情况上门</li>
+                </ul>
+
+                <div class="tier-target">
+                    限量供应 · 仅服务真正顶尖申请家庭
+                </div>
+            </div>
+        </div>
+
+        <!-- Direction-based pricing -->
+        <div class="direction-section">
+            <h3>各申请方向参考定价</h3>
+            <p class="sub">不同申请国家与学位阶段的市场定价区间（旗舰版口径）</p>
+
+            <table class="direction-table">
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">申请方向</th>
+                        <th style="width: 20%;">价格区间</th>
+                        <th style="width: 15%;">服务周期</th>
+                        <th>核心交付</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="market">🇺🇸 美本</td>
+                        <td class="price">30 - 80 万</td>
+                        <td>18 - 24 个月</td>
+                        <td><span class="badge">高客单</span><span class="badge">主力市场</span> 选校+文书+面试+背景</td>
+                    </tr>
+                    <tr>
+                        <td class="market">🇬🇧 英本</td>
+                        <td class="price">15 - 30 万</td>
+                        <td>12 - 18 个月</td>
+                        <td><span class="badge">G5</span> Personal Statement + 笔试 + 面试辅导</td>
+                    </tr>
+                    <tr>
+                        <td class="market">🇺🇸 美研</td>
+                        <td class="price">8 - 18 万</td>
+                        <td>8 - 12 个月</td>
+                        <td><span class="badge">高复购</span> 选校 + SOP/CV + 套磁</td>
+                    </tr>
+                    <tr>
+                        <td class="market">🇬🇧 英研</td>
+                        <td class="price">5 - 12 万</td>
+                        <td>6 - 10 个月</td>
+                        <td>选校 + PS + 标化规划</td>
+                    </tr>
+                    <tr>
+                        <td class="market">🇭🇰🇸🇬 港新本/研</td>
+                        <td class="price">8 - 20 万</td>
+                        <td>10 - 14 个月</td>
+                        <td><span class="badge">增长快</span> 多元化申请组合</td>
+                    </tr>
+                    <tr>
+                        <td class="market">🎨 艺术类（美/英）</td>
+                        <td class="price">40 - 100 万</td>
+                        <td>18 - 24 个月</td>
+                        <td><span class="badge">高溢价</span> 作品集指导 + 选校 + 文书</td>
+                    </tr>
+                    <tr>
+                        <td class="market">🎓 博士 PhD</td>
+                        <td class="price">8 - 25 万</td>
+                        <td>12 - 18 个月</td>
+                        <td><span class="badge">专家轨</span> 套磁 + 研究计划 + 面试</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="disclaimer">
+                <strong>注：</strong>
+                以上定价基于中国一线城市高端市场的合理区间，
+                实际定价应根据公司品牌定位、顾问层级、客户画像动态调整。
+                价值定价的核心原则：<strong>价格 ≈ 客户预期带来的录取价值的 5-10%</strong>。
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section 3: Unit Economics -->
+<section id="unit" class="unit-section">
+    <div class="container">
+        <div class="section-tag">PART 03 · 单位经济模型</div>
+        <h2 class="section-title">单客户盈利结构</h2>
+        <p class="section-sub">
+            以一个旗舰版美本客户为例，拆解 <strong>50 万客单价</strong>背后的
+            真实成本结构与利润空间。所有商业决策都应该回到这张表。
+        </p>
+
+        <div class="unit-grid">
+            <!-- Single customer P&L -->
+            <div class="unit-card">
+                <h3>📊 单客户损益（旗舰版美本，客单价 50 万）</h3>
+
+                <div class="unit-row header">
+                    <div class="label">项目</div>
+                    <div class="amount">金额</div>
+                    <div class="pct">占比</div>
+                </div>
+
+                <div class="unit-row" style="font-weight: 700; color: var(--navy); padding: 16px 0;">
+                    <div class="label">客户付款（Revenue）</div>
+                    <div class="amount">¥ 500,000</div>
+                    <div class="pct">100%</div>
+                </div>
+
+                <div class="unit-row">
+                    <div class="label">主顾问分成（L4）</div>
+                    <div class="amount">- 220,000</div>
+                    <div class="pct">44%</div>
+                </div>
+                <div class="unit-row">
+                    <div class="label">辅助团队（文书 / 规划 / 面试）</div>
+                    <div class="amount">- 35,000</div>
+                    <div class="pct">7%</div>
+                </div>
+                <div class="unit-row">
+                    <div class="label">外部资源（科研 / 名师等）</div>
+                    <div class="amount">- 25,000</div>
+                    <div class="pct">5%</div>
+                </div>
+
+                <div class="unit-row" style="font-weight: 700; background: var(--cream); margin: 4px -16px; padding: 14px 16px; border-radius: 4px;">
+                    <div class="label">毛利（Gross Profit）</div>
+                    <div class="amount" style="color: var(--success);">¥ 220,000</div>
+                    <div class="pct" style="color: var(--success); font-weight: 700;">44%</div>
+                </div>
+
+                <div class="unit-row">
+                    <div class="label">分摊获客成本（CAC）</div>
+                    <div class="amount">- 60,000</div>
+                    <div class="pct">12%</div>
+                </div>
+                <div class="unit-row">
+                    <div class="label">运营 / 管理分摊</div>
+                    <div class="amount">- 50,000</div>
+                    <div class="pct">10%</div>
+                </div>
+
+                <div class="unit-row total profit">
+                    <div class="label">单客户净利</div>
+                    <div class="amount">¥ 110,000</div>
+                    <div class="pct">22%</div>
+                </div>
+
+                <div class="unit-bar-container">
+                    <div class="unit-bar-label">
+                        <span style="color: var(--gray-700);">净利率达成</span>
+                        <span style="font-weight: 700; color: var(--success);">22% / 目标 20%+</span>
+                    </div>
+                    <div class="unit-bar">
+                        <div class="unit-bar-fill" style="width: 110%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LTV / CAC -->
+            <div class="unit-card">
+                <h3>💎 客户终身价值（LTV）</h3>
+
+                <p style="color: var(--gray-700); font-size: 14px; margin-bottom: 24px; line-height: 1.7;">
+                    一个家庭的真实价值远不止"一次申请"。
+                    完整的客户旅程可能跨越 5-8 年，覆盖背景提升 → 美本 → 美研 → 二孩，
+                    LTV 是单次咨询的 <strong style="color: var(--gold);">2-3 倍</strong>。
+                </p>
+
+                <div class="unit-row header">
+                    <div class="label">客户阶段</div>
+                    <div class="amount">收入</div>
+                    <div class="pct">概率</div>
+                </div>
+
+                <div class="unit-row">
+                    <div class="label">背景提升期（提前介入）</div>
+                    <div class="amount">¥ 80,000</div>
+                    <div class="pct">60%</div>
+                </div>
+                <div class="unit-row">
+                    <div class="label">本科申请（旗舰版）</div>
+                    <div class="amount">¥ 500,000</div>
+                    <div class="pct">100%</div>
+                </div>
+                <div class="unit-row">
+                    <div class="label">研究生申请（续约）</div>
+                    <div class="amount">¥ 150,000</div>
+                    <div class="pct">35%</div>
+                </div>
+                <div class="unit-row">
+                    <div class="label">二孩申请（家庭复购）</div>
+                    <div class="amount">¥ 500,000</div>
+                    <div class="pct">25%</div>
+                </div>
+                <div class="unit-row">
+                    <div class="label">转介绍（朋友家庭）</div>
+                    <div class="amount">¥ 350,000</div>
+                    <div class="pct">35%</div>
+                </div>
+
+                <div class="unit-row total">
+                    <div class="label">期望 LTV</div>
+                    <div class="amount">¥ 858,500</div>
+                    <div class="pct">—</div>
+                </div>
+
+                <div class="unit-bar-container" style="background: var(--navy); color: #fff;">
+                    <div style="font-size: 12px; color: rgba(255,255,255,0.6); letter-spacing: 1px; margin-bottom: 8px;">LTV / CAC 比率</div>
+                    <div style="font-size: 36px; font-weight: 700; color: var(--gold); line-height: 1;">14.3x</div>
+                    <div style="font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 8px;">
+                        SaaS 行业健康基线为 3x，我们的服务模型远高于行业标准
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section 4: Growth Flywheel -->
+<section class="flywheel-section">
+    <div class="container">
+        <div class="section-tag">PART 04 · 增长飞轮</div>
+        <h2 class="section-title">复利驱动的增长引擎</h2>
+        <p class="section-sub">
+            这个行业最强的护城河不是营销预算，而是<strong>口碑复利</strong>。
+            真正成熟的升学公司，70% 的新客户来自老客户与转介绍。
+        </p>
+
+        <div class="flywheel-container">
+            <div class="flywheel">
+                <div class="flywheel-step">
+                    <div class="step-num">1</div>
+                    <h4>顶级录取案例</h4>
+                    <p>顶级顾问 + 严格筛选客户 = 高质量录取产出。
+                    每一个录取都是下一次销售的最强证据。</p>
+                    <div class="metric">TOP 20 录取率 35%+</div>
+                </div>
+
+                <div class="flywheel-step">
+                    <div class="step-num">2</div>
+                    <h4>家长口碑</h4>
+                    <p>每个录取家庭背后都有一个"家长群"。
+                    一个真实的成功故事胜过 100 条广告。</p>
+                    <div class="metric">NPS 70+</div>
+                </div>
+
+                <div class="flywheel-step">
+                    <div class="step-num">3</div>
+                    <h4>高质量流量</h4>
+                    <p>转介绍 + 内容 + 社群形成的流量，
+                    转化率是付费广告的 5-8 倍，CAC 低 80%。</p>
+                    <div class="metric">转介绍率 35%</div>
+                </div>
+
+                <div class="flywheel-step">
+                    <div class="step-num">4</div>
+                    <h4>品牌溢价</h4>
+                    <p>品牌信任度允许公司收取行业平均 1.5-2 倍的客单价，
+                    并吸引顶级顾问加入，进一步反哺案例质量。</p>
+                    <div class="metric">客单价 +50%</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 60px; padding: 32px 40px; background: var(--cream); border-radius: 8px; text-align: center;">
+                <div style="font-size: 14px; color: var(--gold); font-weight: 700; letter-spacing: 2px; margin-bottom: 12px;">飞轮的关键</div>
+                <div style="font-size: 19px; color: var(--navy); font-weight: 600; line-height: 1.6;">
+                    第一步必须做到极致。
+                    <span style="color: var(--accent);">案例质量是飞轮的启动器</span>，
+                    没有它，后面的口碑、流量、品牌都无从谈起。
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section 5: 3-Year Forecast -->
+<section id="forecast" class="forecast-section">
+    <div class="container">
+        <div class="section-tag">PART 05 · 三年财务预测</div>
+        <h2 class="section-title">从 0 到 1 亿的增长路径</h2>
+        <p class="section-sub">
+            一个清晰的三年规划：第一年验证模型，第二年规模化，第三年建立护城河。
+            数字基于中国一线城市高端市场的可达成场景。
+        </p>
+
+        <div class="forecast-grid">
+            <!-- Year 1 -->
+            <div class="forecast-card">
+                <div class="forecast-year">YEAR 1 · 2026</div>
+                <div class="forecast-stage">验证期</div>
+
+                <div class="forecast-metrics">
+                    <div class="forecast-metric">
+                        <div class="m-label">CLIENTS</div>
+                        <div class="m-value">60</div>
+                        <div class="m-unit">客户数</div>
+                    </div>
+                    <div class="forecast-metric">
+                        <div class="m-label">ACV</div>
+                        <div class="m-value gold">¥30万</div>
+                        <div class="m-unit">客单价</div>
+                    </div>
+                    <div class="forecast-metric">
+                        <div class="m-label">CONSULTANTS</div>
+                        <div class="m-value">8</div>
+                        <div class="m-unit">顾问数</div>
+                    </div>
+                    <div class="forecast-metric">
+                        <div class="m-label">NET MARGIN</div>
+                        <div class="m-value">10%</div>
+                        <div class="m-unit">净利率</div>
+                    </div>
+                </div>
+
+                <div class="forecast-bottom">
+                    <div class="b-label">ANNUAL REVENUE</div>
+                    <div class="b-value">¥ 1,800万</div>
+                    <div class="b-sub">重点：跑通核心模型 + 沉淀 10 个标杆案例</div>
+                </div>
+            </div>
+
+            <!-- Year 2 - Featured -->
+            <div class="forecast-card featured">
+                <div class="forecast-year">YEAR 2 · 2027</div>
+                <div class="forecast-stage">规模化</div>
+
+                <div class="forecast-metrics">
+                    <div class="forecast-metric">
+                        <div class="m-label">CLIENTS</div>
+                        <div class="m-value">150</div>
+                        <div class="m-unit">客户数 +150%</div>
+                    </div>
+                    <div class="forecast-metric">
+                        <div class="m-label">ACV</div>
+                        <div class="m-value gold">¥35万</div>
+                        <div class="m-unit">客单价 +17%</div>
+                    </div>
+                    <div class="forecast-metric">
+                        <div class="m-label">CONSULTANTS</div>
+                        <div class="m-value">22</div>
+                        <div class="m-unit">顾问数 +175%</div>
+                    </div>
+                    <div class="forecast-metric">
+                        <div class="m-label">NET MARGIN</div>
+                        <div class="m-value">17%</div>
+                        <div class="m-unit">净利率</div>
+                    </div>
+                </div>
+
+                <div class="forecast-bottom">
+                    <div class="b-label">ANNUAL REVENUE</div>
+                    <div class="b-value">¥ 5,250万</div>
+                    <div class="b-sub">重点：转介绍机制启动 + 跨城市拓展</div>
+                </div>
+            </div>
+
+            <!-- Year 3 -->
+            <div class="forecast-card">
+                <div class="forecast-year">YEAR 3 · 2028</div>
+                <div class="forecast-stage">护城河</div>
+
+                <div class="forecast-metrics">
+                    <div class="forecast-metric">
+                        <div class="m-label">CLIENTS</div>
+                        <div class="m-value">280</div>
+                        <div class="m-unit">客户数</div>
+                    </div>
+                    <div class="forecast-metric">
+                        <div class="m-label">ACV</div>
+                        <div class="m-value gold">¥40万</div>
+                        <div class="m-unit">客单价</div>
+                    </div>
+                    <div class="forecast-metric">
+                        <div class="m-label">CONSULTANTS</div>
+                        <div class="m-value">38</div>
+                        <div class="m-unit">顾问数</div>
+                    </div>
+                    <div class="forecast-metric">
+                        <div class="m-label">NET MARGIN</div>
+                        <div class="m-value">22%</div>
+                        <div class="m-unit">净利率</div>
+                    </div>
+                </div>
+
+                <div class="forecast-bottom">
+                    <div class="b-label">ANNUAL REVENUE</div>
+                    <div class="b-value">¥ 1.12亿</div>
+                    <div class="b-sub">重点：合伙人机制成熟 + 品牌溢价稳固</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="disclaimer" style="background: rgba(201, 169, 97, 0.1); border-left-color: var(--gold); color: rgba(255,255,255,0.85); margin-top: 40px;">
+            <strong style="color: var(--gold);">假设说明：</strong>
+            预测基于一线城市定位、聚焦美本/英本/艺术类高端市场、
+            遵循"反向阶梯分成 + 五大支柱赋能"模型。
+            转介绍率 35% 是关键假设，若降至 20% 整体收入将受 30% 影响。
+        </div>
+    </div>
+</section>
+
+<!-- Section 6: Margin Structure -->
+<section id="margin" class="margin-section">
+    <div class="container">
+        <div class="section-tag">PART 06 · 利润结构</div>
+        <h2 class="section-title">收入瀑布图 · 钱去哪了</h2>
+        <p class="section-sub">
+            从客户付款的 100 元，到最终落入公司利润的 22 元，
+            中间的每一笔成本都有清晰的逻辑与战略意义。
+        </p>
+
+        <div class="margin-waterfall">
+            <div class="waterfall-row header">
+                <div>项目</div>
+                <div>占比可视化</div>
+                <div class="w-value" style="text-align: right;">金额</div>
+                <div class="w-pct">比例</div>
+            </div>
+
+            <div class="waterfall-row">
+                <div class="w-label" style="font-weight: 700; color: var(--navy);">📥 总收入</div>
+                <div class="w-bar-container"><div class="w-bar neutral" style="width: 100%;"></div></div>
+                <div class="w-value plus">¥100</div>
+                <div class="w-pct">100%</div>
+            </div>
+
+            <div class="waterfall-row">
+                <div class="w-label">主顾问分成</div>
+                <div class="w-bar-container"><div class="w-bar negative" style="width: 44%;"></div></div>
+                <div class="w-value minus">- ¥44</div>
+                <div class="w-pct">44%</div>
+            </div>
+
+            <div class="waterfall-row">
+                <div class="w-label">辅助团队成本</div>
+                <div class="w-bar-container"><div class="w-bar negative" style="width: 7%;"></div></div>
+                <div class="w-value minus">- ¥7</div>
+                <div class="w-pct">7%</div>
+            </div>
+
+            <div class="waterfall-row">
+                <div class="w-label">外部资源采购</div>
+                <div class="w-bar-container"><div class="w-bar negative" style="width: 5%;"></div></div>
+                <div class="w-value minus">- ¥5</div>
+                <div class="w-pct">5%</div>
+            </div>
+
+            <div class="waterfall-row subtotal">
+                <div class="w-label">毛利（Gross Profit）</div>
+                <div class="w-bar-container"><div class="w-bar positive" style="width: 44%;"></div></div>
+                <div class="w-value plus">¥44</div>
+                <div class="w-pct" style="color: var(--success);">44%</div>
+            </div>
+
+            <div class="waterfall-row">
+                <div class="w-label">营销 / 获客成本</div>
+                <div class="w-bar-container"><div class="w-bar negative" style="width: 12%;"></div></div>
+                <div class="w-value minus">- ¥12</div>
+                <div class="w-pct">12%</div>
+            </div>
+
+            <div class="waterfall-row">
+                <div class="w-label">运营 / 中台</div>
+                <div class="w-bar-container"><div class="w-bar negative" style="width: 5%;"></div></div>
+                <div class="w-value minus">- ¥5</div>
+                <div class="w-pct">5%</div>
+            </div>
+
+            <div class="waterfall-row">
+                <div class="w-label">管理 / G&A</div>
+                <div class="w-bar-container"><div class="w-bar negative" style="width: 5%;"></div></div>
+                <div class="w-value minus">- ¥5</div>
+                <div class="w-pct">5%</div>
+            </div>
+
+            <div class="waterfall-row total">
+                <div class="w-label">💰 净利润</div>
+                <div class="w-bar-container"><div class="w-bar positive" style="width: 22%;"></div></div>
+                <div class="w-value plus">¥22</div>
+                <div class="w-pct">22%</div>
+            </div>
+        </div>
+
+        <div class="disclaimer">
+            <strong>关键洞察：</strong>
+            顾问分成（51%）是最大的成本项——这是有意为之。
+            <strong>"高顾问分成 = 高顾问质量 = 高客单价 = 高利润"</strong>是这个商业模式的根本逻辑。
+            试图通过压低分成来扩大利润，是这个行业最常见也最致命的战略错误。
+        </div>
+    </div>
+</section>
+
+<!-- Section 7: Growth Levers -->
+<section class="levers-section">
+    <div class="container">
+        <div class="section-tag">PART 07 · 增长杠杆</div>
+        <h2 class="section-title">四大增长杠杆</h2>
+        <p class="section-sub">
+            收入 = 客户数 × 客单价 × 复购率 × 利润率。
+            按优先级撬动这四个杠杆，每一个都能带来非线性增长。
+        </p>
+
+        <div class="levers-grid">
+            <div class="lever-card">
+                <div class="lever-icon">🎯</div>
+                <div class="lever-name">LEVER 1 · 客单价</div>
+                <div class="lever-impact">+50%</div>
+                <p class="lever-desc">
+                    通过升级套餐结构、增加增值服务、引入合伙人级顾问，
+                    让客单价从 30 万逐步提升至 45 万。
+                </p>
+            </div>
+
+            <div class="lever-card">
+                <div class="lever-icon">📈</div>
+                <div class="lever-name">LEVER 2 · 转化率</div>
+                <div class="lever-impact">+80%</div>
+                <p class="lever-desc">
+                    内容矩阵 + 案例库 + 标杆顾问个人 IP，
+                    将咨询到签约的转化率从 15% 提升至 27%。
+                </p>
+            </div>
+
+            <div class="lever-card">
+                <div class="lever-icon">🔄</div>
+                <div class="lever-name">LEVER 3 · 转介绍</div>
+                <div class="lever-impact">3x</div>
+                <p class="lever-desc">
+                    建立老客户激励机制（推荐礼包 / 专属活动），
+                    将转介绍率从 12% 提升至 35%+，直接降低 CAC。
+                </p>
+            </div>
+
+            <div class="lever-card">
+                <div class="lever-icon">⚡</div>
+                <div class="lever-name">LEVER 4 · 顾问产能</div>
+                <div class="lever-impact">+40%</div>
+                <p class="lever-desc">
+                    通过运营中台、文书工厂、知识系统，
+                    让单顾问年带客量从 8 个提升至 12 个，毛利率同步上升。
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <div class="container">
+        <h2>
+            收入模型只是<span class="gold-text">起点</span><br>
+            真正的护城河是<span class="gold-text">人</span>
+        </h2>
+        <p>
+            漂亮的财务模型回答了"我们能赚多少"，
+            但顶级公司的真正竞争力，永远是组织模型——
+            是合伙人制、三轨晋升、五大支柱共同构建的"人才磁场"。
+        </p>
+        <div class="cta-buttons">
+            <a href="admissions-consulting-model.html" class="cta-button">
+                查看组织模型 →
+            </a>
+            <a href="#streams" class="cta-button outline">
+                重读收入引擎
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    EDU·PARTNERS Revenue Model · 顶级咨询公司视角下的升学顾问公司收入设计
+</footer>
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section').forEach(s => {
+        s.classList.add('fade-in');
+        observer.observe(s);
+    });
+</script>
+
+</body>
+</html>
