@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EDU-PARTNERS · 战略模型导航</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+        --navy: #0a1f44;
+        --navy-light: #1a3a6e;
+        --gold: #c9a961;
+        --gold-light: #e5d29a;
+        --cream: #faf7f0;
+        --gray-100: #e9ecef;
+        --gray-400: #6c757d;
+        --gray-700: #343a40;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                     "Microsoft YaHei", sans-serif;
+        background: linear-gradient(135deg, var(--cream) 0%, #fff 100%);
+        color: var(--gray-700);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+    }
+
+    .container {
+        max-width: 1100px;
+        width: 100%;
+    }
+
+    header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+    .logo {
+        display: inline-block;
+        font-size: 14px;
+        letter-spacing: 4px;
+        color: var(--gold);
+        font-weight: 600;
+        margin-bottom: 16px;
+        text-transform: uppercase;
+    }
+
+    h1 {
+        font-size: clamp(32px, 5vw, 48px);
+        color: var(--navy);
+        font-weight: 700;
+        margin-bottom: 16px;
+        letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+        font-size: 17px;
+        color: var(--gray-400);
+        max-width: 640px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+    }
+
+    .card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 36px 32px;
+        text-decoration: none;
+        color: inherit;
+        border: 1px solid var(--gray-100);
+        box-shadow: 0 2px 8px rgba(10, 31, 68, 0.04);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--gold), var(--gold-light));
+        opacity: 0;
+        transition: opacity 0.25s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(10, 31, 68, 0.12);
+        border-color: var(--gold-light);
+    }
+
+    .card:hover::before { opacity: 1; }
+
+    .card-num {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--gold);
+        letter-spacing: 2px;
+        margin-bottom: 12px;
+    }
+
+    .card-title {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 12px;
+        line-height: 1.3;
+    }
+
+    .card-desc {
+        font-size: 14px;
+        color: var(--gray-400);
+        line-height: 1.6;
+        margin-bottom: 24px;
+        flex-grow: 1;
+    }
+
+    .card-link {
+        font-size: 14px;
+        color: var(--navy);
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .card-link::after {
+        content: "→";
+        transition: transform 0.25s ease;
+    }
+
+    .card:hover .card-link::after {
+        transform: translateX(4px);
+    }
+
+    footer {
+        text-align: center;
+        margin-top: 60px;
+        font-size: 13px;
+        color: var(--gray-400);
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">EDU-PARTNERS</div>
+            <h1>升学顾问公司战略模型</h1>
+            <p class="subtitle">围绕组织架构、顾问合作、收入设计三个维度，构建可规模化的高端升学服务体系。</p>
+        </header>
+
+        <div class="grid">
+            <a class="card" href="admissions-consulting-model.html">
+                <div class="card-num">01 / ORGANIZATION</div>
+                <div class="card-title">升学顾问公司组织模型</div>
+                <div class="card-desc">Strategic Operating Model：从核心团队到职能分工，搭建一家可持续增长的升学咨询机构的组织蓝图。</div>
+                <span class="card-link">查看模型</span>
+            </a>
+
+            <a class="card" href="consultant-partnership.html">
+                <div class="card-num">02 / PARTNERSHIP</div>
+                <div class="card-title">顾问合作模型</div>
+                <div class="card-desc">Partnership Model：让顶级自由顾问愿意长期跟随你的合作机制、激励结构与品牌赋能方案。</div>
+                <span class="card-link">查看模型</span>
+            </a>
+
+            <a class="card" href="revenue-model.html">
+                <div class="card-num">03 / REVENUE</div>
+                <div class="card-title">收入模型</div>
+                <div class="card-desc">Revenue Model：服务定价、客户分层与多元化收入设计，量化业务的增长路径与利润结构。</div>
+                <span class="card-link">查看模型</span>
+            </a>
+        </div>
+
+        <footer>
+            © EDU-PARTNERS Strategic Models
+        </footer>
+    </div>
+</body>
+</html>
